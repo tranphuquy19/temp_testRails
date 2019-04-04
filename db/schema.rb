@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_04_095428) do
+ActiveRecord::Schema.define(version: 2019_04_04_105631) do
 
   create_table "answers", force: :cascade do |t|
     t.text "content"
@@ -40,6 +40,18 @@ ActiveRecord::Schema.define(version: 2019_04_04_095428) do
     t.index ["user_id"], name: "index_exams_on_user_id"
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "content"
+    t.string "tags"
+    t.integer "user_id"
+    t.integer "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_posts_on_category_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
   create_table "questions", force: :cascade do |t|
     t.integer "level", null: false
     t.text "content", null: false
@@ -59,6 +71,40 @@ ActiveRecord::Schema.define(version: 2019_04_04_095428) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
+  create_table "session_members", force: :cascade do |t|
+    t.integer "test_session_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["test_session_id"], name: "index_session_members_on_test_session_id"
+    t.index ["user_id"], name: "index_session_members_on_user_id"
+  end
+
+  create_table "test_papers", force: :cascade do |t|
+    t.text "content"
+    t.integer "point"
+    t.integer "exam_id"
+    t.integer "category_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_test_papers_on_category_id"
+    t.index ["exam_id"], name: "index_test_papers_on_exam_id"
+    t.index ["user_id"], name: "index_test_papers_on_user_id"
+  end
+
+  create_table "test_sessions", force: :cascade do |t|
+    t.text "content"
+    t.text "list_exams"
+    t.datetime "time_public"
+    t.integer "category_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_test_sessions_on_category_id"
+    t.index ["user_id"], name: "index_test_sessions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
