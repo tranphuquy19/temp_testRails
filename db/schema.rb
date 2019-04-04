@@ -10,6 +10,66 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2019_04_04_095428) do
+
+  create_table "answers", force: :cascade do |t|
+    t.text "content"
+    t.integer "questions_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["questions_id"], name: "index_answers_on_questions_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "content"
+    t.text "img"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "exams", force: :cascade do |t|
+    t.string "title"
+    t.integer "time_remaining"
+    t.text "list_questions"
+    t.integer "category_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_exams_on_category_id"
+    t.index ["user_id"], name: "index_exams_on_user_id"
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.integer "level", null: false
+    t.text "content", null: false
+    t.integer "category_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_questions_on_category_id"
+    t.index ["level"], name: "index_questions_on_level"
+    t.index ["user_id"], name: "index_questions_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.text "content"
+    t.text "comment"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "email", null: false
+    t.string "encrypted_password", limit: 128, null: false
+    t.string "confirmation_token", limit: 128
+    t.string "remember_token", limit: 128, null: false
+    t.index ["email"], name: "index_users_on_email"
+    t.index ["remember_token"], name: "index_users_on_remember_token"
+  end
 
 end
