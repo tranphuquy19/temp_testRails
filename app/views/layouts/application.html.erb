@@ -107,16 +107,16 @@
         id="header"
         data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyStartAt': 57, 'stickySetTop': '-57px', 'stickyChangeLogo': true}">
         <% if signed_in? -%>
-       <%= button_to t(".sign_out"), sign_out_path, method: :delete %>
-    <% else -%>
-      <%= link_to t(".sign_in"), sign_in_path %>
-    <% end -%>
+          <%= button_to t(".sign_out"), sign_out_path, method: :delete %>
+        <% else -%>
+          <%= link_to t(".sign_in"), sign_in_path %>
+        <% end -%>
         <div class="header-body">
           <div class="header-container container">
             <div class="header-row">
               <div class="header-column">
                 <div class="header-logo">
-                  <a href="home">
+                  <a href="/">
                     <img
                       alt="Porto"
                       width="111"
@@ -367,7 +367,15 @@
         </div>
       </header>
       <div role="main" class="main">
-        <div class="container"><%= yield %></div>
+      <div id="flash">
+        <% flash.each do |key, value| -%>
+        <div id="flash_<%= key %>"><%=h value %></div>
+        <% end %>
+      </div>
+        <div class="container">
+        <h1>Đây là thân Thẻ container</h1>
+          <%= yield %>
+        </div>
       </div>
 
       <footer id="footer">
@@ -419,8 +427,7 @@
                 id="tweet"
                 class="twitter"
                 data-plugin-tweets
-                data-plugin-options="{'username': '', 'count': 2}"
-              >
+                data-plugin-options="{'username': '', 'count': 2}">
                 <p>Please wait...</p>
               </div>
             </div>
