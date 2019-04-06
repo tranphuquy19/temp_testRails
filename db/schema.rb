@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_04_105631) do
+ActiveRecord::Schema.define(version: 2019_04_05_135953) do
 
   create_table "answers", force: :cascade do |t|
     t.text "content"
@@ -24,6 +24,47 @@ ActiveRecord::Schema.define(version: 2019_04_04_105631) do
     t.string "title", null: false
     t.text "content"
     t.text "img"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "class_members", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "classs_id" 
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_comments_on_user_id"
+    t.index ["classs_id"], name: "index_comments_on_classs_id"
+  end
+
+  create_table "classses", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_classses_on_name"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "content"
+    t.integer "user_id"
+    t.integer "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_comments_on_post_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "commons", force: :cascade do |t|
+    t.string "title"
+    t.text "url"
+    t.text "img_logo"
+    t.text "img_cover"
+    t.text "img_nav_icon"
+    t.string "email"
+    t.text "address"
+    t.text "facebook"
+    t.text "youtube"
+    t.text "phone_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
