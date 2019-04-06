@@ -30,11 +30,11 @@ ActiveRecord::Schema.define(version: 2019_04_05_135953) do
 
   create_table "class_members", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "classs_id" 
+    t.integer "classs_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_comments_on_user_id"
-    t.index ["classs_id"], name: "index_comments_on_classs_id"
+    t.index ["classs_id"], name: "index_class_members_on_classs_id"
+    t.index ["user_id"], name: "index_class_members_on_user_id"
   end
 
   create_table "classses", force: :cascade do |t|
