@@ -26,11 +26,12 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <%= csrf_meta_tag %>
     <!-- Basic -->
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <title>Porto - Responsive HTML5 Template 5.7.2</title>
+    <title>Test online | </title>
 
     <meta name="keywords" content="HTML5 Template" />
     <meta name="description" content="Porto - Responsive HTML5 Template" />
@@ -106,11 +107,7 @@
       <header
         id="header"
         data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyStartAt': 57, 'stickySetTop': '-57px', 'stickyChangeLogo': true}">
-        <% if signed_in? -%>
-          <%= button_to t(".sign_out"), sign_out_path, method: :delete %>
-        <% else -%>
-          <%= link_to t(".sign_in"), sign_in_path %>
-        <% end -%>
+        
         <div class="header-body">
           <div class="header-container container">
             <div class="header-row">
@@ -354,6 +351,14 @@
                               All test
                             </a>
                           </li>
+                          
+                          <li class="">
+                          <% if signed_in? %>
+                              <%= link_to t(".sign_out"), sign_out_path, method: :delete %>
+                          <% else -%>
+                              <%= link_to t(".sign_in"), sign_in_path %>
+                          <% end -%>
+                          </li>
 
                           <!-- accout here -->
                         </ul>
@@ -373,7 +378,7 @@
         <% end %>
       </div>
         <div class="container">
-        <h1>Đây là thân Thẻ container</h1>
+        
           <%= yield %>
         </div>
       </div>
