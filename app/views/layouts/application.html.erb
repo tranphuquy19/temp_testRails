@@ -1,28 +1,4 @@
-<!-- <!DOCTYPE html>
-<html>
-<head>
-  <%= csrf_meta_tag %>
-</head>
-<body>
-  <div id="header">
-    <% if signed_in? -%>
-      <%= button_to t(".sign_out"), sign_out_path, method: :delete %>
-    <% else -%>
-      <%= link_to t(".sign_in"), sign_in_path %>
-    <% end -%>
-  </div>
 
-  <div id="flash">
-    <% flash.each do |key, value| -%>
-      <div id="flash_<%= key %>"><%=h value %></div>
-    <% end %>
-  </div>
-
-  <%= yield %>
-</body>
-</html>
-
- -->
 <!DOCTYPE html>
 <html>
   <head>
@@ -31,7 +7,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <title>Test online | </title>
+    <title>Test online | <%= @title %></title>
 
     <meta name="keywords" content="HTML5 Template" />
     <meta name="description" content="Porto - Responsive HTML5 Template" />
@@ -347,7 +323,7 @@
                             </ul>
                           </li>
                           <li class="">
-                            <a href="test">
+                            <a href="tests">
                               All test
                             </a>
                           </li>
@@ -380,6 +356,15 @@
         <div class="container">
         
           <%= yield %>
+
+          <div class="row ">
+              <div class="col-md-12">
+                <blockquote class="blockquote-reverse">
+                  <p>Pellentesque pellentesque eget tempor tellus. Fusce lacllentesque eget tempor tellus ellentesque pelleinia tempor malesuada. Pellentesque pellentesque eget tempor tellus ellentesque pellentesque eget tempor tellus. Fusce lacinia tempor malesuada.</p>
+                  <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
+                </blockquote>
+              </div>            
+          </div>
         </div>
       </div>
 
@@ -553,17 +538,16 @@
 
     <!-- Theme Initialization Files -->
     <script src="/js/theme.init.js"></script>
-
-    <!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information.
-     <script>
-         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-     
-         ga('create', 'UA-12345678-1', 'auto');
-         ga('send', 'pageview');
-     </script>
-      -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.js"></script>
+    <%if @url != nil %>
+    <script>
+      $.get('<%= @url %>', function(data){
+        var content = data;
+        var converter = new showdown.Converter();
+        var md_html = converter.makeHtml(content);
+        $('#pContent').append(md_html);
+      });
+    </script>
+    <% end %>
   </body>
 </html>
