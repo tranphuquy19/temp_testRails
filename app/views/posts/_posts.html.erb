@@ -1,21 +1,22 @@
+<% @posts.each do |post| %>
 <div class="col-md-4">
     <div class="recent-posts">
         <article class="post">
             <div class="date">
-                <span class="day">05</span>
-                <span class="month">Jan</span>
+                <span class="day"><%= post.created_at.strftime("%d") %></span>
+                <span class="month"><%= post.created_at.strftime("%b") %></span>
             </div>
-            <h4><a href="blog-post.html">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec hendrerit vehicula est, in
-                consequat.</p>
+            <h4><a href="blog-post.html"><%= post.title%></a></h4>
+            <p><%= post.content.to_s[0..100]+" ..." %></p>
             <div class="post-meta">
-                <span><i class="fa fa-calendar"></i> January 10, 2017 </span>
+                <span><i class="fa fa-calendar"></i><%= post.created_at.strftime("%b %d, %Y") %></span>
                 <span><i class="fa fa-user"></i> By <a href="#">John Doe</a> </span>
                 <span><i class="fa fa-tag"></i> <a href="#">Duis</a>, <a href="#">News</a> </span>
-                <span><i class="fa fa-comments"></i> <a href="#">12 Comments</a></span>
+                <span><i class="fa fa-comments"></i> <a href="#"><%= post.comments.count %> Comments</a></span>
                 <hr class="solid">
                 <a href="blog-post.html" class="btn btn-xs btn-primary pull-right mb-lg">Read more...</a>
             </div>
         </article>
     </div>
 </div>
+<% end %>
