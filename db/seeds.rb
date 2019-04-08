@@ -1,7 +1,10 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+category_list = [
+    ["Kanji", "Hán tự", "img/projects/project-1.jpg"],
+    ["Grammar", "Ngữ pháp", "img/projects/project-1.jpg"],
+    ["Vocabulary", "Từ vựng", "img/projects/project-1.jpg"]
+]
+
+question_list = [
+    [5, 1, "<u> 先週</u> デパートに かいものに いきました。", "せんしゅ", "せんしゅう", "ぜんしゅ", "ぜんしゅう", "イ"],
+    [5, 2, "cau hoi", "da1", "da2", "da3", "", "イ"]
+]
