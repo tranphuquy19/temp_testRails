@@ -6,15 +6,23 @@
                 <span class="day"><%= post.created_at.strftime("%d") %></span>
                 <span class="month"><%= post.created_at.strftime("%b") %></span>
             </div>
-            <h4><a href="blog-post.html"><%= post.title%></a></h4>
+            <h4><a href="/posts/<%= post.id %>"><%= post.title%></a></h4>
             <p><%= post.content.to_s[0..100]+" ..." %></p>
             <div class="post-meta">
                 <span><i class="fa fa-calendar"></i><%= post.created_at.strftime("%b %d, %Y") %></span>
-                <span><i class="fa fa-user"></i> By <a href="#">John Doe</a> </span>
+                <span><i class="fa fa-user"></i> By 
+                    <a href="#">
+                    <% if post.user.name != nil %>
+                    <%= post.user.name %>
+                    <% else %>
+                    <%= post.user.email %>
+                    <% end %>
+                    </a> 
+                </span>
                 <span><i class="fa fa-tag"></i> <a href="#">Duis</a>, <a href="#">News</a> </span>
                 <span><i class="fa fa-comments"></i> <a href="#"><%= post.comments.count %> Comments</a></span>
                 <hr class="solid">
-                <a href="blog-post.html" class="btn btn-xs btn-primary pull-right mb-lg">Read more...</a>
+                <a href="/posts/<%= post.id %>" class="btn btn-xs btn-primary pull-right mb-lg">Read more...</a>
             </div>
         </article>
     </div>
