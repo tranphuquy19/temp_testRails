@@ -1,15 +1,23 @@
 require 'json'
+require 'time'
 
 namespace :seeder do
     
     desc "Seed all tables"
   task all: :environment do
+    puts "Make sure \'rails db:drop\' and \'rails db:migrate\' has been run!"
     Rake::Task["seeder:user"].invoke
-    p "Seeded user"
+    puts "Seeding user"
     Rake::Task["seeder:category"].invoke
-    p "Seeded category"
+    puts "Seeding category"
     Rake::Task["seeder:post"].invoke(20)
-    p "Seeded post"
+    puts "Seeding post"
+    Rake::Task["seeder:question"].invoke
+    puts "Seeding question"
+    Rake::Task["seeder:exam"].invoke
+    puts "Seeding exam"
+    Rake::Task["seeder:testSession"].invoke
+    puts "Seeding test_session"
   end
 
   desc "Seed table users"
@@ -95,6 +103,11 @@ namespace :seeder do
       ["Kiểm tra Homework đề 7 ", 30, 115, 135, 3, "category/homework-7.jpg", 6],
       ["Kiểm tra Homework đề 8 ", 30, 128, 148, 3, "category/homework-8.jpg", 6]
     ]
+    r = Random.new
+    exam_list.each do |title, time_remaining, qBegin, qEnd, user_id, img, category_id|
+      a = Array(qBegin..qEnd).join(",")
+      Exam.create(title: title, time_remaining: time_remaining, list_questions: a, category_id: category_id, user_id: r.rand(1...4))
+    end
   end
 
   desc "Seed table posts"
@@ -112,14 +125,14 @@ namespace :seeder do
   end
 
   desc "Seed table test sessions"
-  task testSessions: :environment do
+  task testSession: :environment do
     #04/4/2019 : ngay thi , 7:00 : thoi gian thi , "1,2,3,4" : bộ câu hỏi , 1: cate , 2: id_user
     testSesss_list = [
-      ["Kiểm tra Kanji khóa 18", "04/4/2019 7:00", "1,2,3,4", 1, 2, "category/homework-9.jpg"],
-      ["Kiểm tra Kanji khóa 17", "04/6/2019 8:00", "1,2,5,7",1, 2, "category/homework-2.jpg"],
+      ["Kiểm tra Kanji khóa 18", "04/04/2019 7:00", "1,2,3,4", 1, 2, "category/homework-9.jpg"],
+      ["Kiểm tra Kanji khóa 17", "04/06/2019 8:00", "1,2,5,7",1, 2, "category/homework-2.jpg"],
       ["Kiểm tra Kanji khóa 16", "04/12/2019 14:00", "3,4,6,8", 1, 2, "category/homework-4.jpg"],
       ["Kiểm tra Kanji khóa 15", "04/18/2019 13:00", "2,5,9,10", 1, 2, "category/homework-5.jpg"],
-      ["Kiểm tra từ vựng khóa 18", "04/8/2019 8:00", "1,2,3,4", 3, 2, "category/homework-6.jpg"],
+      ["Kiểm tra từ vựng khóa 18", "04/08/2019 8:00", "1,2,3,4", 3, 2, "category/homework-6.jpg"],
       ["Kiểm tra từ vựng khóa 17", "04/10/2019 9:00", "1,2,5,7", 3, 2, "category/homework-7.jpg"],
       ["Kiểm tra từ vựng khóa 16", "04/20/2019 15:00", "3,4,6,8", 3, 2, "category/homework-8.jpg"],
       ["Kiểm tra từ vựng khóa 15", "04/24/2019 14:00", "2,5,9,10", 3, 2, "category/vocabulary4.png"],
@@ -128,6 +141,10 @@ namespace :seeder do
       ["Kiểm tra ngữ pháp khóa 16", "04/28/2019 16:00", "3,4,6,8", 2, 2, "category/vocabulary5.png"],
       ["Kiểm tra ngữ pháp khóa 15", "04/26/2019 15:00", "2,5,9,10", 2, 2, "category/vocabulary6.jpg"]
     ]
+    testSesss_list.each do |content, datetime, list_exams, category_id, user_id, img|
+      d = Time.strptime(datetime, "%m/%d/%Y %H:%M").strftime("%Y-%m-%d %H:%M:00")
+      TestSession.create(content: content, list_exams: list_exams, time_public: d, user_id: user_id, category_id: category_id, img: img)
+    end
   end
 
   desc "Seed table questions"
@@ -286,11 +303,11 @@ namespace :seeder do
       answers_hash = {:a => q1, :i => q2, :u => q3, :e => q4}.to_s
       case category_id
       when 1
-        p Question.create(level: level, content: content, answers: answers_hash, key: key, user_id: 1, category_id: category_id)
+        Question.create(level: level, content: content, answers: answers_hash, key: key, user_id: 1, category_id: category_id)
       when 2
-        p Question.create(level: level, content: content, answers: answers_hash, key: key, user_id: 2, category_id: category_id)
+        Question.create(level: level, content: content, answers: answers_hash, key: key, user_id: 2, category_id: category_id)
       else
-        p Question.create(level: level, content: content, answers: answers_hash, key: key, user_id: 3, category_id: category_id)
+        Question.create(level: level, content: content, answers: answers_hash, key: key, user_id: 3, category_id: category_id)
       end
     end
   end
