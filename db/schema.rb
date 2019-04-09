@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2019_04_05_135953) do
     t.text "img"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["title"], name: "index_categories_on_title", unique: true
   end
 
   create_table "class_members", force: :cascade do |t|

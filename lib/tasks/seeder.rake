@@ -47,7 +47,7 @@ namespace :seeder do
     r = Random.new
     nums.times do
       ct = Faker::Markdown.headers + "\n" + "\n" + Faker::Markdown.emphasis + "\n" + Faker::Markdown.inline_code + "\n" + Faker::Markdown.unordered_list + "\n" + Faker::Markdown.block_code + "\n" + Faker::Markdown.table + "\n" + Faker::Markdown.emphasis
-      Post.create(title: Faker::Lorem.sentence, content: ct, tags: Faker::Lorem.words(2).join(","), user_id: r.rand(1...3), category_id: r.rand(1...6))
+      Post.create(title: Faker::Lorem.sentence, content: ct, tags: Faker::Lorem.words(2).join(","), user_id: r.rand(1...4), category_id: r.rand(1...6))
     end
   end
 

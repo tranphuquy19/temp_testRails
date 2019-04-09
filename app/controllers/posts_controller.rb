@@ -10,9 +10,8 @@ class PostsController < ApplicationController
     end
 
     def show
-        post = Post.find_by_id(params[:id])
-        @post = post
-        @title = post.user.name + " post"
+        @post = Post.find_by_id(params[:id])
+        @title = @post.user.name + " post"
         @url = "http://localhost:3000/posts/"+params[:id]+"/md"
     end
 
