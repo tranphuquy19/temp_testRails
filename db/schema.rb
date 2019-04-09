@@ -134,6 +134,7 @@ ActiveRecord::Schema.define(version: 2019_04_05_135953) do
   create_table "test_sessions", force: :cascade do |t|
     t.text "content"
     t.text "list_exams"
+    t.string "img", default: "projects/project.jpg"
     t.datetime "time_public"
     t.integer "category_id"
     t.integer "user_id"

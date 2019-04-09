@@ -1,3 +1,5 @@
+require 'json'
+
 namespace :seeder do
     
     desc "Seed all tables"
@@ -19,6 +21,9 @@ namespace :seeder do
     ]
     user_list.each do |name, email, pass|
       User.create(name: name, email: email, password: pass)
+    end
+    47.times do |i|
+      User.create(name: "user"+i.to_s, email: "user"+i.to_s+"@exam.com", password: "123456789")
     end
   end
 
@@ -275,8 +280,16 @@ namespace :seeder do
       [3,2, "連休はどこかに旅行に行く ( ) 、いえでパーティーをしたい。", "というより", "はんめん", "うちに", "かわりに", "エ"],
       [3,2, "かぜをひいたようだ。こんな時は無理を( ) 。今日は仕事を休もう。", "しないようだ", "しないにかぎる", "するようではない", "するのでもない", "イ"]
   ]
-    question_list.each do |level, category_id, q1, q2, q3, q4, key|
-      
+    question_list.each do |level, category_id, content, q1, q2, q3, q4, key|
+      answers_hash = {:a => q1, :i => q2, :u => q3, :e => q4}.to_s
+      case category_id
+      when 1
+        p Question.create(level: level, content: content, answers: answers_hash, key: key, user_id: 1, category_id: category_id)
+      when 2
+        p Question.create(level: level, content: content, answers: answers_hash, key: key, user_id: 2, category_id: category_id)
+      else
+        p Question.create(level: level, content: content, answers: answers_hash, key: key, user_id: 3, category_id: category_id)
+      end
     end
   end
 
