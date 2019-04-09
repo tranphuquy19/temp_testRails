@@ -17,9 +17,9 @@
         <ul class="portfolio-list sort-destination" data-sort-id="portfolio">
 
             <% @test_sessions.each do |test_session| %>
-            <li class="col-md-2 col-sm-6 col-xs-12 isotope-item <%= test_session.category.title %>">
+            <li class="col-md-2 col-sm-6 col-xs-12 isotope-item <%= test_session.category.title.downcase %>">
                 <div class="portfolio-item">
-                    <a href="portfolio-single-small-slider.html">
+                    <a href="/test_sessions/<%= test_session.id %>">
                         <span class="thumb-info thumb-info-centered-info">
                             <span class="thumb-info-wrapper">
                                 <img src="/img/<%= test_session.img %>" class="img-responsive" alt="">
