@@ -148,7 +148,7 @@
                   </nav>
                 </div>
                 <div class="header-row">
-                  <div class="header-nav">
+                  <ul class="header-nav">
                     <button
                       class="btn header-btn-collapse-nav"
                       data-toggle="collapse"
@@ -191,150 +191,48 @@
                             <a class="dropdown-toggle" href="home">
                               Home
                             </a>
+                            
+                          </li>
+                          <li class="dropdown">
+                            <a class="dropdown-toogle" href="/posts">Posts</a>
                             <ul class="dropdown-menu">
                               <li>
-                                <a href="home">
-                                  Landing Page
-                                </a>
+                                <a href="/posts/new">New Post</a>
                               </li>
-                              <li class="dropdown-submenu">
-                                <a href="index-classic.html">Classic</a>
-                                <ul class="dropdown-menu">
-                                  <li>
-                                    <a
-                                      href="index-classic.html"
-                                      data-thumb-preview="/img/previews/preview-classic.jpg"
-                                      >Classic - Original</a
-                                    >
-                                  </li>
-                                  <li>
-                                    <a
-                                      href="index-classic-color.html"
-                                      data-thumb-preview="/img/previews/preview-classic-color.jpg"
-                                      >Classic - Color</a
-                                    >
-                                  </li>
-                                  <li>
-                                    <a
-                                      href="index-classic-light.html"
-                                      data-thumb-preview="/img/previews/preview-classic-light.jpg"
-                                      >Classic - Light</a
-                                    >
-                                  </li>
-                                  <li>
-                                    <a
-                                      href="index-classic-video.html"
-                                      data-thumb-preview="/img/previews/preview-classic-video.jpg"
-                                      >Classic - Video</a
-                                    >
-                                  </li>
-                                  <li>
-                                    <a
-                                      href="index-classic-video-light.html"
-                                      data-thumb-preview="/img/previews/preview-classic-video-light.jpg"
-                                      >Classic - Video - Light</a
-                                    >
-                                  </li>
-                                </ul>
-                              </li>
-                              <li class="dropdown-submenu">
-                                <a href="index-corporate.html"
-                                  >Corporate
-                                  <span class="tip tip-dark">hot</span></a
-                                >
-                                <ul class="dropdown-menu">
-                                  <li>
-                                    <a
-                                      href="index-corporate.html"
-                                      data-thumb-preview="/img/previews/preview-corporate.jpg"
-                                      >Corporate - Version 1</a
-                                    >
-                                  </li>
-                                  <li>
-                                    <a
-                                      href="index-corporate-2.html"
-                                      data-thumb-preview="/img/previews/preview-corporate-version2.jpg"
-                                      >Corporate - Version 2</a
-                                    >
-                                  </li>
-                                  <li>
-                                    <a
-                                      href="index-corporate-3.html"
-                                      data-thumb-preview="/img/previews/preview-corporate-version3.jpg"
-                                      >Corporate - Version 3</a
-                                    >
-                                  </li>
-                                  <li>
-                                    <a
-                                      href="index-corporate-4.html"
-                                      data-thumb-preview="/img/previews/preview-corporate-version4.jpg"
-                                      >Corporate - Version 4</a
-                                    >
-                                  </li>
-                                  <li>
-                                    <a
-                                      href="index-corporate-5.html"
-                                      data-thumb-preview="/img/previews/preview-corporate-version5.jpg"
-                                      >Corporate - Version 5</a
-                                    >
-                                  </li>
-                                  <li>
-                                    <a
-                                      href="index-corporate-6.html"
-                                      data-thumb-preview="/img/previews/preview-corporate-version6.jpg"
-                                      >Corporate - Version 6</a
-                                    >
-                                  </li>
-                                  <li>
-                                    <a
-                                      href="index-corporate-7.html"
-                                      data-thumb-preview="/img/previews/preview-corporate-version7.jpg"
-                                      >Corporate - Version 7</a
-                                    >
-                                  </li>
-                                  <li>
-                                    <a
-                                      href="index-corporate-8.html"
-                                      data-thumb-preview="/img/previews/preview-corporate-version8.jpg"
-                                      >Corporate - Version 8</a
-                                    >
-                                  </li>
-                                  <li>
-                                    <a
-                                      href="index-corporate-hosting.html"
-                                      data-thumb-preview="/img/previews/preview-corporate-hosting.jpg"
-                                      >Corporate - Hosting</a
-                                    >
-                                  </li>
-                                </ul>
-                              </li>
-                              <li class="dropdown-submenu">
-                                <a href="#">One Page</a>
-                                <ul class="dropdown-menu">
-                                  <li>
-                                    <a
-                                      href="index-one-page.html"
-                                      data-thumb-preview="/img/previews/preview-one-page.jpg"
-                                      >One Page Original</a
-                                    >
-                                  </li>
-                                </ul>
+                              <li>
+                                <a href="/users/posts">My Posts</a>
                               </li>
                             </ul>
                           </li>
-                          <li class="">
-                            <a href="/tests">
-                              All test
-                            </a>
+                          <li class="dropdown">
+                            <a class="dropdown-toogle" href="/">Test Sessionss</a>
+                            <ul class="dropdown-menu">
+                              <li>
+                                <a href="/tests_sessions/new">New Test Session</a>
+                              </li>
+                              <li>
+                                <a href="/tests_sessions/new">New Test Exam</a>
+                              </li>
+                            </ul>
                           </li>
-                          
-                          <li class="">
                           <% if signed_in? %>
-                              <%= link_to t(".sign_out"), sign_out_path, method: :delete %>
-                          <% else -%>
-                              <%= link_to t(".sign_in"), sign_in_path %>
-                          <% end -%>
+                          <li class="dropdown">
+                            <a class="dropdown-toggle">Profile</a>
+                            <ul class="dropdown-menu">
+                              <li>
+                                <a href="/users/home">Your Profile</a>
+                              </li>
+                              <li>
+                                <%= link_to t(".sign_out"), sign_out_path, method: :delete %>
+                              </li>
+                            </ul>
                           </li>
+                          <% else -%>
+                          <li class=""></li>
+                            <%= link_to t(".sign_in"), sign_in_path %>
+                          </li>
+                          <% end -%>
+                          
 
                           <!-- accout here -->
                         </ul>
@@ -540,8 +438,9 @@
 
     <!-- Theme Initialization Files -->
     <script src="/js/theme.init.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.js"></script>
+    
     <%if @url != nil %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.js"></script>
     <script>
       $.get('<%= @url %>', function(data){
         var content = data;
