@@ -39,6 +39,11 @@ namespace :seeder do
 
   desc "Seed table exams"
   task exam: :environment do
+    #tiêu đề, phút, câu đầu, câu cuối, user_id, link ảnh, category_id
+    exam_list = [
+      ["Kiểm tra Kanji giữa kì", 60, 1, 37, 1, "projects/project.jpg", 1],
+      [....]
+    ]
   end
 
   desc "Seed table posts"
@@ -53,6 +58,15 @@ namespace :seeder do
 
   desc "Seed table clases"
   task classs: :environment do
+  end
+
+  desc "Seed table test sessions"
+  task testSessions: :environment do
+    #Exam sẽ có 4 đề thi 1->4
+    #1 là category_id, 2 là user_id 
+    testSesss_list = [
+      ["Kiểm tra Kanji khoa CNTT", "04/13/2019 17:00", 1, 2, "projects/project.jpg"]
+    ]
   end
 
   desc "Seed table questions"
