@@ -129,26 +129,26 @@ namespace :seeder do
   desc "Seed table classes"
   task classs: :environment do
     classs_list = [
-      ["Lớp học JLPT N5"],
-      ["Lớp học JLPT N4"],
-      ["Lớp học JLPT N3"],
-      ["Lớp học JLPT N2"],
-      ["Lớp học JLPT N1"],
-      ["Lớp học kanji N5"],
-      ["Lớp học kanji N4"],
-      ["Lớp học kanji N3"],
-      ["Lớp học kanji N2"],
-      ["Lớp học kanji N1"],
-      ["Lớp học từ vựng N5"],
-      ["Lớp học từ vựng N4"],
-      ["Lớp học từ vựng N3"],
-      ["Lớp học từ vựng N2"],
-      ["Lớp học từ vựng N1"],
-      ["Lớp học ngữ pháp N5"],
-      ["Lớp học ngữ pháp N4"],
-      ["Lớp học ngữ pháp N3"],
-      ["Lớp học ngữ pháp N2"],
-      ["Lớp học ngữ pháp N1"]
+      "Lớp JLPT N5",
+      "Lớp JLPT N4",
+      "Lớp JLPT N3",
+      "Lớp JLPT N2",
+      "Lớp JLPT N1",
+      "Lớp kanji N5",
+      "Lớp kanji N4",
+      "Lớp kanji N3",
+      "Lớp kanji N2",
+      "Lớp kanji N1",
+      "Lớp từ vựng N5",
+      "Lớp từ vựng N4",
+      "Lớp từ vựng N3",
+      "Lớp từ vựng N2",
+      "Lớp từ vựng N1",
+      "Lớp ngữ pháp N5",
+      "Lớp ngữ pháp N4",
+      "Lớp ngữ pháp N3",
+      "Lớp ngữ pháp N2",
+      "Lớp ngữ pháp N1"
     ]
     classs_list.each do |name|
       Classs.create(name: name)
