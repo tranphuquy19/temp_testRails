@@ -351,7 +351,7 @@ namespace :seeder do
       ["thích ghê :))", 12, 11],
       ["thực sự tuyệt vời lắm ạ", 13, 12],
       [" rất hay và thực tế !", 14, 13],
-      ["Hay thật luôn ...!!!﻿", 15, 14],
+      ["Hay thật luôn ...!!!", 15, 14],
       ["Lên chiến lược mới thui...!", 16, 15],
       ["tuyệt vời!", 17, 16],
       ["Học để quên!", 18, 17],
@@ -363,6 +363,25 @@ namespace :seeder do
 
   desc "Seed table commons"
   task common: :environment do
+  end
+
+  desc "Seed table session members"
+  task sessionMenber: :environment do
+    #1,2,3 user_id, 2 test_session_id
+    sessionMen_list = [
+      ["26,27,7,4,5", 1],
+      ["6,7,8,9,10", 2],
+      ["11,12,13,14,15", 3],
+      ["16,17,18,19,20", 4],
+      ["21,22,23,24,25", 5],
+      ["26,27,28,29,30", 6],
+      ["31,32,33,34,35", 7],
+      ["36,37,38,39,40", 8],
+      ["41,42,43,44,45", 9],
+      ["46,47,48,49,50", 10],
+      ["30,35,40,45,50", 11],
+      ["5,10,15,20,25", 12]
+    ]
   end
 
   desc "Seed table classMember"
