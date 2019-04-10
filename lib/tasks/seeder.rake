@@ -122,6 +122,10 @@ namespace :seeder do
 
   desc "Seed table clases"
   task classs: :environment do
+    classs_list = [
+      ["Lớp học JLPT N5"],
+      []
+    ]
   end
 
   desc "Seed table test sessions"
@@ -314,6 +318,11 @@ namespace :seeder do
 
   desc "Seed table comments"
   task comment: :environment do
+    #3 user_id, 19 post_id 
+    comment_list = [
+      ["bài viết này hay quá!", 3, 19],
+      []
+    ]
   end
 
   desc "Seed table commons"
@@ -322,5 +331,10 @@ namespace :seeder do
 
   desc "Seed table classMember"
   task classMember: :environment do
+    #4 là user_id, 9 classs_id 
+    classMember_list = [
+      [4, 9],
+      []
+    ]
   end
 end
