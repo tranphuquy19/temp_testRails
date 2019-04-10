@@ -7,17 +7,23 @@ namespace :seeder do
   task all: :environment do
     puts "Make sure \'rails db:drop\' and \'rails db:migrate\' has been run!"
     Rake::Task["seeder:user"].invoke
-    puts "Seeding user"
+    puts "Seeding users"
     Rake::Task["seeder:category"].invoke
-    puts "Seeding category"
+    puts "Seeding categories"
     Rake::Task["seeder:post"].invoke(20)
-    puts "Seeding post"
+    puts "Seeding posts"
     Rake::Task["seeder:question"].invoke
-    puts "Seeding question"
+    puts "Seeding questions"
     Rake::Task["seeder:exam"].invoke
-    puts "Seeding exam"
+    puts "Seeding exams"
     Rake::Task["seeder:testSession"].invoke
-    puts "Seeding test_session"
+    puts "Seeding test sessions"
+    Rake::Task["seeder:sessionMember"].invoke
+    puts "Seeding session members"
+    Rake::Task["seeder:classs"].invoke
+    puts "Seeding classes"
+    Rake::Task["seeder:classMember"].invoke
+    puts "Seeding class members"
   end
 
   desc "Seed table users"
@@ -120,7 +126,7 @@ namespace :seeder do
     end
   end
 
-  desc "Seed table clases"
+  desc "Seed table classes"
   task classs: :environment do
     classs_list = [
       ["Lớp học JLPT N5"],
@@ -372,7 +378,7 @@ namespace :seeder do
   end
 
   desc "Seed table session members"
-  task sessionMenber: :environment do
+  task sessionMember: :environment do
     #1,2,3 user_id, 2 test_session_id
     sessionMen_list = [
       ["26,27,7,4,5", 1],
