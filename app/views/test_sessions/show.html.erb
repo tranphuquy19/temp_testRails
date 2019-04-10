@@ -1,0 +1,30 @@
+<div class="col-md-9">
+    <div class="recent-posts">
+        <article class="post">
+            <div class="date">
+                <span class="day"><%= @test_session.created_at.strftime("%d") %></span>
+                <span class="month"><%= @test_session.created_at.strftime("%b") %></span>
+            </div>
+            <div class="post-content">
+                <h2>
+                    <a href="#"><%= @test_session.content %></a>
+                </h2>
+                <div class="post-meta">
+                    <span><i class="fa fa-user"></i> Giáo viên
+                        <a href="/users/<%= @test_session.user.id %>">
+                            <% if @test_session.user.name.blank? %>
+                            <%= @test_session.user.email %>
+                            <% else %>
+                            <%= @test_session.user.name %>
+                            <% end %>
+                        </a>
+                    </span>
+                </div>
+                <div class="row">
+                    <p><span><b>Thời gian kiểm tra: </b><i class="fa fa-calendar"></i> <%= @test_session.time_public %></span></p>
+                </div>
+            </div>
+        </article>
+    </div>
+</div>
+</div>

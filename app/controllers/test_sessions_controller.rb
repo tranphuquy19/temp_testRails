@@ -5,8 +5,8 @@ class TestSessionsController < ApplicationController
     end
 
     def show
-        @test_sessions = TestSession.find(params[:id])
-        @title = @test_sessions.content
+        @test_session = TestSession.find(params[:id])
+        @title = @test_session.content
     end
 
     def edit
