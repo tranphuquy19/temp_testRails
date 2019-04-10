@@ -144,6 +144,9 @@ namespace :seeder do
       ["Lớp học ngữ pháp N2"],
       ["Lớp học ngữ pháp N1"]
     ]
+    classs_list.each do |name|
+      Classs.create(name: name)
+    end
   end
 
   desc "Seed table test sessions"
@@ -385,6 +388,12 @@ namespace :seeder do
       ["30,35,40,45,50", 11],
       ["5,10,15,20,25", 12]
     ]
+    sessionMen_list.each do |session_members, test_session_id|
+      sm = session_members.split(",")
+      sm.each do |user_id|
+        SessionMember.create(user_id: user_id.to_i, test_session_id: test_session_id)
+      end
+    end
   end
 
   desc "Seed table classMember"
@@ -439,5 +448,8 @@ namespace :seeder do
       [49,6],
       [50,1]
     ]
+    classMember_list.each do |user_id, classs_id|
+      ClassMember.create(user_id: user_id, classs_id: classs_id)
+    end
   end
 end
