@@ -122,6 +122,28 @@ namespace :seeder do
 
   desc "Seed table clases"
   task classs: :environment do
+    classs_list = [
+      ["Lớp học JLPT N5"],
+      ["Lớp học JLPT N4"],
+      ["Lớp học JLPT N3"],
+      ["Lớp học JLPT N2"],
+      ["Lớp học JLPT N1"],
+      ["Lớp học kanji N5"],
+      ["Lớp học kanji N4"],
+      ["Lớp học kanji N3"],
+      ["Lớp học kanji N2"],
+      ["Lớp học kanji N1"],
+      ["Lớp học từ vựng N5"],
+      ["Lớp học từ vựng N4"],
+      ["Lớp học từ vựng N3"],
+      ["Lớp học từ vựng N2"],
+      ["Lớp học từ vựng N1"],
+      ["Lớp học ngữ pháp N5"],
+      ["Lớp học ngữ pháp N4"],
+      ["Lớp học ngữ pháp N3"],
+      ["Lớp học ngữ pháp N2"],
+      ["Lớp học ngữ pháp N1"]
+    ]
   end
 
   desc "Seed table test sessions"
@@ -317,6 +339,29 @@ namespace :seeder do
 
   desc "Seed table comments"
   task comment: :environment do
+    #3 user_id, 19 post_id 
+    comment_list = [
+      ["bài viết này hay quá!", 3, 1],
+      ["bài viết này rất hữu ích", 4, 2],
+      ["cảm ơn ", 5, 3],
+      ["bài viết rất hay ", 6, 4],
+      ["rất hữu ích", 7, 5],
+      ["Hay quá... Cảm ơn sp nhé!", 8, 6],
+      [" Xem đi xem lại càng thấy ngấm", 9, 7],
+      ["Mình muốn mua sách tập đọc thì tn vậy ? ", 9, 8],
+      ["bài viết này hay quá!", 10, 9],
+      ["rất hay ", 11, 10],
+      ["thích ghê :))", 12, 11],
+      ["thực sự tuyệt vời lắm ạ", 13, 12],
+      [" rất hay và thực tế !", 14, 13],
+      ["Hay thật luôn ...!!!﻿", 15, 14],
+      ["Lên chiến lược mới thui...!", 16, 15],
+      ["tuyệt vời!", 17, 16],
+      ["Học để quên!", 18, 17],
+      ["ngấm dần ngấm dần", 19, 18],
+      ["Bản chất của việc nhớ là quên hahaha", 20, 19],
+      ["ahihi ahihi !!!", 21, 20]
+    ]
   end
 
   desc "Seed table commons"
@@ -325,5 +370,55 @@ namespace :seeder do
 
   desc "Seed table classMember"
   task classMember: :environment do
+    #4 là user_id, 9 classs_id 
+    classMember_list = [
+      [4, 1],
+      [5,2],
+      [6,3],
+      [7,4],
+      [8,5],
+      [9,6],
+      [10,7],
+      [11,8],
+      [12,9],
+      [13,10],
+      [14,11],
+      [15,12],
+      [16,13],
+      [17,14],
+      [18,15],
+      [19,16],
+      [20,17],
+      [21,18],
+      [22,19],
+      [23,20],
+      [24,1],
+      [25,2],
+      [26,3],
+      [27,4],
+      [28,5],
+      [29,6],
+      [30,7],
+      [31,8],
+      [32,9],
+      [33,10],
+      [34,11],
+      [35,12],
+      [36,13],
+      [37,14],
+      [38,15],
+      [39,16],
+      [40,17],
+      [41,18],
+      [42,19],
+      [43,20],
+      [44,1],
+      [45,2],
+      [46,3],
+      [47,4],
+      [48,5],
+      [49,6],
+      [50,1]
+    ]
   end
 end
