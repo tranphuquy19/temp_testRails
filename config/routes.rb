@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get '/posts/:id/md', to: 'posts#markdown'
   get '/home', to: 'home#show'
   get '/edit', to: 'test_sessions#edit'
-  get '/exams', to: 'exams#show'
+  get '/exams/:id', to: 'exams#show'
 
   resources :posts
   resources :tests

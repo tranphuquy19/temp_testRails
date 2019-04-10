@@ -1,12 +1,7 @@
 class ExamsController < ApplicationController
     def show
-        render html:"exam HERE!"
-    end
-    
-    def update
-    end
-
-    def deytroy
+        @exam_id = params[:id]
+         
     end
     
 end
