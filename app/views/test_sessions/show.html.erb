@@ -19,6 +19,11 @@
                             <% end %>
                         </a>
                     </span>
+                    <% if isAdmin %>
+                    <span>
+                        <a href="/test_sessions/<%= @test_session.id %>/edit"><i class="fa fa-edit"> Chỉnh sửa</i></a>
+                    </span>
+                    <% end %>
                 </div>
                 <div class="row">
                     <p><span><b>Thời gian kiểm tra: </b><i class="fa fa-calendar"></i> <%= @test_session.time_public %></span></p>

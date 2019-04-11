@@ -25,20 +25,28 @@
                             <h2 class="panel-title">Test Session Properties</h2>
                         </header>
                         <div class="panel-body">
-                            <form class="form-horizontal form-bordered" method="get">
+                            <form class="form-horizontal form-bordered" method="post" accept-charset="UTF-8" action="/test_sessions/update">
+                                <%= csrf %>
                                 <div class="form-group">
                                     <label class="col-md-3 control-label" for="inputReadOnly">ID</label>
                                     <div class="col-md-6">
-                                        <input type="text" value="<%= @test_session.id %>" id="inputReadOnly"
-                                            class="form-control" readonly="readonly">
+                                        <input type="text" value="<%= @test_session.id %>" id="session_id"
+                                            class="form-control" readonly="readonly" name="session[id]">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label" for="inputHelpText">Phiên</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" id="inputHelpText" value="<%= @test_session.content %>">
+                                        <input name="session[contentt]" type="text" class="form-control" id="session_content" value="<%= @test_session.content %>">
                                         <span class="help-block">Nội dung của phiên thi.</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="inputHelpText">Người tạo</label>
+                                    <div class="col-md-6">
+                                        <input name="session[user]" type="text" class="form-control" id="session_user" value="<%= @test_session.user.email %>">
+                                        <span class="help-block"><i class="fa fa-user-circle-o"></i> <%= @test_session.user.name if nameNotNil %></span>
                                     </div>
                                 </div>
 
@@ -63,13 +71,10 @@
                                     <div class="col-md-6">
                                         <div class="fileupload fileupload-new" data-provides="fileupload">
                                             <div class="input-append">
-                                                <div class="uneditable-input">
-                                                    <i class="fa fa-file fileupload-exists"></i>
-                                                    <span class="fileupload-preview"></span>
-                                                </div>
+                                                
                                                 <span class="btn btn-default btn-file">
-                                                    <span class="fileupload-exists">Change</span>
-                                                    <span class="fileupload-new">Select file</span>
+                                                    <%# <span class="fileupload-exists">Change</span>
+                                                    <span class="fileupload-new">Select file</span> %>
                                                     <input type="file" />
                                                 </span>
                                                 <a href="#" class="btn btn-default fileupload-exists"
@@ -79,7 +84,11 @@
                                     </div>
                                 </div>
 
+                                <div class="form-group">
+                                    <button class="btn btn-3d btn-secondary mr-xs mb-sm" name="commit" type="submit">Save</button>
+                                </div>
                             </form>
+
                         </div>
                     </section>
                 </div>

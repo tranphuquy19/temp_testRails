@@ -1,7 +1,21 @@
 <div class="now">
+    <section class="panel panel-admin">
+        <header class="panel-heading">
+            <div class="panel-actions">
+                <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+                <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+            </div>
+
+            <h2 class="panel-title">Test Session - List Exams</h2>
+        </header>
+        <div class="panel-body">
+            <form class="form-horizontal form-bordered" method="post" accept-charset="UTF-8"
+                action="/test_sessions/update">
+            </form>
+        </div>
+    </section>
+
     <% @list_exams.each do |id|%>
-    <div class="col-md-12 col-sm-12">
-        
-    </div>
+
     <% end %>
 </div>
