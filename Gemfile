@@ -10,6 +10,8 @@ gem 'sqlite3', '~> 1.3.6'
 gem 'clearance'
 gem 'faker', '~> 1.6', '>= 1.6.3'
 gem 'unirest'
+#countdown timer
+gem "jquery-countdown-rails"
 #markdown redcarpet
 gem 'redcarpet', '~>3.0.0'
 # Use Puma as the app server
