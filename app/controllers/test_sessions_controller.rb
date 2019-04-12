@@ -35,7 +35,7 @@ class TestSessionsController < ApplicationController
 
 
     def update
-        p @test_session.id 
+        
         p params[:contentt]
     end
 

@@ -38,7 +38,7 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label" for="inputHelpText">Phiên</label>
                                     <div class="col-md-6">
-                                        <input name="session[contentt]" type="text" class="form-control" id="session_content" value="<%= @test_session.content %>">
+                                        <input name="session[content]" type="text" class="form-control" id="session_content" value="<%= @test_session.content %>">
                                         <span class="help-block">Nội dung của phiên thi.</span>
                                     </div>
                                 </div>
@@ -97,7 +97,7 @@
                     <%= render partial: '/test_sessions/list_exams'%>
                 </div>
                 <div id="listMembers" class="tab-pane">
-                    <% @list_members = @test_session.session_members.all %>
+                    <% @list_members = @test_session.session_members.ids %>
                     <%= render partial: '/test_sessions/list_members'%>
                 </div>
             </div>

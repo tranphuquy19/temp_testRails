@@ -1,5 +1,9 @@
 module ApplicationHelper
     include Clearance::Controller
+    def optionsForm(ops)
+        a = "<input type="hidden" name="session[options]" id="option_form" value=\""+ops+"\">"
+    end
+
     def csrf
         hidden_field_tag :authenticity_token, form_authenticity_token
     end
