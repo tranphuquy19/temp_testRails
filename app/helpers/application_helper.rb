@@ -1,7 +1,7 @@
 module ApplicationHelper
     include Clearance::Controller
-    def optionsForm(ops)
-        a = "<input type="hidden" name="session[options]" id="option_form" value=\""+ops+"\">"
+    def optionsForm(form, ops)
+        a = ("<input type=\"hidden\" name=\"#{form}[options]\" id=\"options_form\" value=\"#{ops}\">").html_safe
     end
 
     def csrf
