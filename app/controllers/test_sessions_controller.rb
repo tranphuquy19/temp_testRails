@@ -27,13 +27,17 @@ class TestSessionsController < ApplicationController
     def update
         if checkAuth
         pars = params[:session]
-        # ts = TestSession.find(pars[:id])
-        # ts.update()
+        ts = TestSession.find(pars[:id])
         case pars[:options]
         when "properties"
-            ts = TestSession.find(pars[:id])
             ts.update_attributes(content: pars[:content], user_id: User.find_by(email: pars[:user]).id, time_remaining: pars[:time_remaining], time_public: timePickerToDateTime(pars[:time_public]))
         when "exams"
+            list_exams = pars[:list_exams].split("\r\n")
+            le = []
+            list_exams.each do |title|
+                le.push Exam.find_by(title: title).id
+            end
+            ts.update_attributes(list_exams: le.join(","))
         when "members"
         end
         end

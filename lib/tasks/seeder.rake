@@ -159,20 +159,20 @@ namespace :seeder do
   task testSession: :environment do
     #04/4/2019 : ngay thi , 7:00 : thoi gian thi , "1,2,3,4" : bộ câu hỏi , 1: cate , 2: id_user
     testSesss_list = [
-      ["Kiểm tra Kanji khóa 18", "04/04/2019 7:00", "1,2,3,4", 1, 2, "category/9cfb4cdd6d3a7bea080e010d4a90eeb6.jpg", 30],
-      ["Kiểm tra Kanji khóa 17", "04/06/2019 8:00", "1,2,5,7",1, 2, "category/9f228e44fcc4b928c01c93a984200e3c.jpg", 15],
-      ["Kiểm tra Kanji khóa 16", "04/12/2019 14:00", "3,4,6,8", 1, 2, "category/9fc222cc8aaf35ed34b958f671de3d6d.jpg", 45],
+      ["Kiểm tra Kanji khóa 18", "04/04/2019 7:00", "1,2,3,4", 1, 1, "category/9cfb4cdd6d3a7bea080e010d4a90eeb6.jpg", 30],
+      ["Kiểm tra Kanji khóa 17", "04/06/2019 8:00", "1,2,5,7",1, 3, "category/9f228e44fcc4b928c01c93a984200e3c.jpg", 15],
+      ["Kiểm tra Kanji khóa 16", "04/12/2019 14:00", "3,4,6,8", 1, 1, "category/9fc222cc8aaf35ed34b958f671de3d6d.jpg", 45],
       ["Kiểm tra Kanji khóa 15", "04/18/2019 13:00", "2,5,9,10", 1, 2, "category/9fc222cc8aaf35ed34b958f671de3d6dq.jpg", 60],
-      ["Kiểm tra từ vựng khóa 18", "04/08/2019 8:00", "1,2,3,4", 3, 2, "category/82eedaf8933d78d14261854a39efd93e.jpg", 20],
+      ["Kiểm tra từ vựng khóa 18", "04/08/2019 8:00", "1,2,3,4", 3, 3, "category/82eedaf8933d78d14261854a39efd93e.jpg", 20],
       ["Kiểm tra từ vựng khóa 17", "04/10/2019 9:00", "1,2,5,7", 3, 2, "category/4366b9b215ba727d236e2c9d91dab48a.jpg", 30],
-      ["Kiểm tra từ vựng khóa 16", "04/20/2019 15:00", "3,4,6,8", 3, 2, "category/a63b07ddc2042a1cdab194abc90d289d.jpg", 55],
-      ["Kiểm tra từ vựng khóa 15", "04/24/2019 14:00", "2,5,9,10", 3, 2, "category/a41236dbe8a05921eec0fc470596eb7d.jpg", 25],
+      ["Kiểm tra từ vựng khóa 16", "04/20/2019 15:00", "3,4,6,8", 3, 1, "category/a63b07ddc2042a1cdab194abc90d289d.jpg", 55],
+      ["Kiểm tra từ vựng khóa 15", "04/24/2019 14:00", "2,5,9,10", 3, 3, "category/a41236dbe8a05921eec0fc470596eb7d.jpg", 25],
       ["Kiểm tra ngữ pháp khóa 18", "04/14/2019 9:00", "1,2,3,5", 2, 2, "category/df146775e376e2ee42e81074c7890b79.jpg", 10],
-      ["Kiểm tra ngữ pháp khóa 17", "04/28/2019 10:00", "1,2,5,3", 2, 2, "category/JLPT-2.jpg", 60],
-      ["Kiểm tra ngữ pháp khóa 16", "04/28/2019 16:00", "3,4,6,5", 2, 2, "category/ky-nang-hoc-tieng-nhat.jpg", 60],
-      ["Kiểm tra ngữ pháp khóa 15", "04/26/2019 15:00", "2,5,9,1", 2, 2, "category/vocabulary-1.jpg", 60],
-      ["Kiểm tra ngữ pháp khóa 14", "04/28/2019 10:00", "1,2,5,8", 2, 2, "category/reading-1.jpg", 60],
-      ["Kiểm tra ngữ pháp khóa 13", "04/28/2019 16:00", "3,4,6,2", 2, 2, "category/vocabulary3.jpg", 60],
+      ["Kiểm tra ngữ pháp khóa 17", "04/28/2019 10:00", "1,2,5,3", 2, 1, "category/JLPT-2.jpg", 60],
+      ["Kiểm tra ngữ pháp khóa 16", "04/28/2019 16:00", "3,4,6,5", 2, 3, "category/ky-nang-hoc-tieng-nhat.jpg", 60],
+      ["Kiểm tra ngữ pháp khóa 15", "04/26/2019 15:00", "2,5,9,1", 2, 1, "category/vocabulary-1.jpg", 60],
+      ["Kiểm tra ngữ pháp khóa 14", "04/28/2019 10:00", "1,2,5,8", 2, 3, "category/reading-1.jpg", 60],
+      ["Kiểm tra ngữ pháp khóa 13", "04/28/2019 16:00", "3,4,6,2", 2, 3, "category/vocabulary3.jpg", 60],
       ["Kiểm tra ngữ pháp khóa 12", "04/26/2019 15:00", "2,5,9,7", 2, 2, "category/vocabulary7.jpg", 60]
     ]
     testSesss_list.each do |content, datetime, list_exams, category_id, user_id, img, time_remaining|
