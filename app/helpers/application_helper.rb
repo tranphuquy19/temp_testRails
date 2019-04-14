@@ -1,5 +1,13 @@
 module ApplicationHelper
     include Clearance::Controller
+    def timePickerToDateTime(time)
+        DateTime.strptime(time, "%m/%d/%Y %I:%M %p")
+    end
+
+    def dateTimeToTimePicker(datetime)
+        datetime.strftime("%m/%d/%Y %I:%M %p")
+    end
+
     def optionsForm(form, ops)
         a = ("<input type=\"hidden\" name=\"#{form}[options]\" id=\"options_form\" value=\"#{ops}\">").html_safe
     end
@@ -33,6 +41,7 @@ module ApplicationHelper
             isAdmin ? true : false
         else 
             redirect_to sign_in_path
+            return false
         end
     end
 end

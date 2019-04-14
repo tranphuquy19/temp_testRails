@@ -64,7 +64,6 @@ ActiveRecord::Schema.define(version: 2019_04_05_135953) do
 
   create_table "exams", force: :cascade do |t|
     t.string "title"
-    t.integer "time_remaining"
     t.text "list_questions"
     t.integer "category_id"
     t.integer "user_id"
@@ -136,6 +135,7 @@ ActiveRecord::Schema.define(version: 2019_04_05_135953) do
     t.text "list_exams"
     t.string "img", default: "projects/project.jpg"
     t.datetime "time_public"
+    t.integer "time_remaining"
     t.integer "category_id"
     t.integer "user_id"
     t.datetime "created_at", null: false

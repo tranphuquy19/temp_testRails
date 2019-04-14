@@ -52,12 +52,19 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label" for="inputHelpText">Thời gian ra đề</label>
+                                    <label class="col-md-3 control-label" for="inputHelpText">Thời gian phát đề</label>
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <input name="session[time_public]" type="text" class="form-control" id="datetimepicker4">
+                                            <input name="session[time_public]" type="text" class="form-control" id="datetimepicker4" value="<%= @time_public%>">
                                         </div>
-                                        
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="inputHelpText">Thời gian thi</label>
+                                    <div class="col-md-6">
+                                        <input name="session[time_remaining]" type="text" class="form-control" id="session_content" value="<%= @test_session.time_remaining %>">
+                                        <span class="help-block">Đơn vị: phút</span>
                                     </div>
                                 </div>
 

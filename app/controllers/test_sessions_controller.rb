@@ -11,20 +11,10 @@ class TestSessionsController < ApplicationController
     end
 
     def edit
-        # if signed_in?
-        #     user = current_user
-        #     if user.role == 2
-        #     @test_session = TestSession.find(params[:id])
-        #     @title = @test_session.content + " edit"
-        #     else
-        #         redirect_to home_path
-        #     end
-        # else
-        #     redirect_to sign_in_path
-        # end
         if isAdmin
             @test_session = TestSession.find(params[:id])
             @title = @test_session.content + " edit"
+            @time_public = dateTimeToTimePicker(@test_session.time_public)
         else
             redirect_to home_path
         end
@@ -35,8 +25,18 @@ class TestSessionsController < ApplicationController
 
 
     def update
-        
-        p params[:contentt]
+        if checkAuth
+        pars = params[:session]
+        # ts = TestSession.find(pars[:id])
+        # ts.update()
+        case pars[:options]
+        when "properties"
+            ts = TestSession.find(pars[:id])
+            ts.update_attributes(content: pars[:content], user_id: User.find_by(email: pars[:user]).id, time_remaining: pars[:time_remaining], time_public: timePickerToDateTime(pars[:time_public]))
+        when "exams"
+        when "members"
+        end
+        end
     end
 
     def create
