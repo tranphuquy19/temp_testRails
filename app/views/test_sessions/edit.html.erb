@@ -27,6 +27,7 @@
                         <div class="panel-body">
                             <form class="form-horizontal form-bordered" method="post" accept-charset="UTF-8" action="/test_sessions/update">
                                 <%= csrf %>
+                                <%= optionsForm("session", "properties")%>
                                 <div class="form-group">
                                     <label class="col-md-3 control-label" for="inputReadOnly">ID</label>
                                     <div class="col-md-6">
@@ -47,6 +48,16 @@
                                     <div class="col-md-6">
                                         <input name="session[user]" type="text" class="form-control" id="session_user" value="<%= @test_session.user.email %>">
                                         <span class="help-block"><i class="fa fa-user-circle-o"></i> <%= @test_session.user.name if nameNotNil %></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="inputHelpText">Thời gian ra đề</label>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <input name="session[time_public]" type="text" class="form-control" id="datetimepicker4">
+                                        </div>
+                                        
                                     </div>
                                 </div>
 
@@ -75,7 +86,7 @@
                                                 <span class="btn btn-default btn-file">
                                                     <%# <span class="fileupload-exists">Change</span>
                                                     <span class="fileupload-new">Select file</span> %>
-                                                    <input type="file" />
+                                                    <input type="file" name="session[file_upload]"/>
                                                 </span>
                                                 <a href="#" class="btn btn-default fileupload-exists"
                                                     data-dismiss="fileupload">Remove</a>
