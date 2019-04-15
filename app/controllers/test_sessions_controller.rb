@@ -21,6 +21,11 @@ class TestSessionsController < ApplicationController
     end
 
     def new
+        if isAdmin
+            @title = " Create new Test Session"
+        else
+            redirect_to home_path
+        end
     end
 
 
@@ -55,6 +60,17 @@ class TestSessionsController < ApplicationController
     end
 
     def create
+        if isAdmin
+            pars = params[:session]
+            le = pars[:list_exams].split("\r\n").join(",")
+            lm = pars[:list_members].split("\r\n")
+            u = current_user.test_sessions.create(content: pars[:content], list_exams: le, time_public: timePickerToDateTime(pars[:time_public]), time_remaining: pars[:time_remaining], category_id: pars[:category_id].to_i)
+            lm.each do |email|
+                SessionMember.create(user_id: User.find_by(email: email).id, test_session_id: u.id)
+            end
+        else
+            redirect_to home_path
+        end
     end
 
     def destroy

@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   get '/home', to: 'home#show'
   get '/edit', to: 'test_sessions#edit'
   get '/exams', to: 'exams#show'
-  post 'test_sessions/update', to: 'test_sessions#update'
+  post '/test_sessions/update', to: 'test_sessions#update'
+  post '/test_sessions/create', to: 'test_sessions#create'
   resources :posts
   resources :tests
   resources :test_sessions
