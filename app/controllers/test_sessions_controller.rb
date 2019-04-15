@@ -26,20 +26,31 @@ class TestSessionsController < ApplicationController
 
     def update
         if checkAuth
-        pars = params[:session]
-        ts = TestSession.find(pars[:id])
-        case pars[:options]
-        when "properties"
-            ts.update_attributes(content: pars[:content], user_id: User.find_by(email: pars[:user]).id, time_remaining: pars[:time_remaining], time_public: timePickerToDateTime(pars[:time_public]))
-        when "exams"
-            list_exams = pars[:list_exams].split("\r\n")
-            le = []
-            list_exams.each do |title|
-                le.push Exam.find_by(title: title).id
+            pars = params[:session]
+            ts = TestSession.find(pars[:id])
+            if pars[:submit] == "delete"
+                TestSession.find(pars[:id]).destroy
+                redirect_to home_path
+            else            
+                case pars[:options]
+                when "properties"
+                    ts.update_attributes(content: pars[:content], user_id: User.find_by(email: pars[:user]).id, time_remaining: pars[:time_remaining], time_public: timePickerToDateTime(pars[:time_public]))
+                when "exams"
+                    list_exams = pars[:list_exams].split("\r\n")
+                    le = []
+                    list_exams.each do |title|
+                    le.push Exam.find_by(title: title).id
+                    end
+                    ts.update_attributes(list_exams: le.join(","))
+                when "members"
+                    emails = pars[:list_members].split("\r\n")
+                    sm = ts.session_members.destroy_all
+                    emails.each do |email|
+                        SessionMember.create(user_id: User.find_by(email: email).id, test_session_id: 11)
+                        #add_feature=> try-catch if User (:email) not found
+                    end
+                end
             end
-            ts.update_attributes(list_exams: le.join(","))
-        when "members"
-        end
         end
     end
 

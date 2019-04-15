@@ -53,10 +53,8 @@
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label" for="inputHelpText">Thời gian phát đề</label>
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <input name="session[time_public]" type="text" class="form-control" id="datetimepicker4" value="<%= @time_public%>">
-                                        </div>
+                                    <div class="col-sm-6">
+                                        <input name="session[time_public]" type="text" class="form-control" id="datetimepicker4" value="<%= @time_public%>">
                                     </div>
                                 </div>
 
@@ -103,7 +101,10 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <button class="btn btn-3d btn-secondary mr-xs mb-sm" name="commit" type="submit">Save</button>
+                                    <p>
+                                    <button class="btn btn-3d btn-secondary mr-xs mb-sm" name="session[submit]" type="submit" value="save">Save</button>
+                                    <button type="submit" class="btn btn-quaternary mr-xs mb-sm" name="session[submit]" value="delete">Delete</button>
+                                    </p>
                                 </div>
                             </form>
 
