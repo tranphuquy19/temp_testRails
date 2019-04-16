@@ -25,11 +25,22 @@
         }
         var countdownTimer = setInterval('timer()', 1000);
     </script>
-    <span id="countdown" class="timer flip-clock-wrapper"></span>
+    <style type="text/css">
+        .flip-clock-wrapper{
+            
+            border: 1px solid red;
+            font-size: 30px;
+            position: fixed;
+            margin-right: 10%;
+        }
+    </style>
+    <div class="col text-right">
+        <span id="countdown" class="timer flip-clock-wrapper"></span>
+    </div>
 
     <% @list = getAllQuestionID(@exam_id)%>
     <% $i=0 %>
-    <% @list.each do |li|%>
+    <% @list.each do |li|%> 
       <% $i+=1 %>
         <% if $i%2==0 %>
             <section class="container bg-success">
@@ -76,20 +87,20 @@
                 </div>
             </section>
         <% end %>
-    
+
     <% end %>
 
     </br>
-        
+
     <button type="button" id="submit-btn" class="btn btn-primary btn-block">Nộp bài</button>
 
     <% @listCorrectAnwsers = getCorrectAnwsers(@exam_id)%>
-        
+
     <script>
         var listCA = <%=raw @listCorrectAnwsers %>;
         var button = document.getElementById("submit-btn");
         var point = 0;
-            
+
             button.onclick = function(){
                 var element = document.getElementsByClassName("custom-control-label");
                 var arrayAnswer = [];
@@ -99,7 +110,7 @@
                         if(checkbox[i*4+j].checked==true){
                             arrayAnswer[i]=element[i*4+j].id;
                         }
-                    }   
+                    }
                     if(arrayAnswer[i]==null){
                         arrayAnswer[i]="x";
                     }
@@ -110,9 +121,9 @@
                         point++;
                     }
                 }
-                
+
                 alert("Bạn trả lời đúng "+point+"/"+arrayAnswer.length+" câu!");
             };
-        </script>    
-    
+        </script>
+
 <% end %>

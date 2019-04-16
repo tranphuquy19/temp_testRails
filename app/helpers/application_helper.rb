@@ -12,7 +12,8 @@ module ApplicationHelper
             underline: true,
             highlight: true
            )
-    return markdown.render(text).html_safe
+            return markdown.render(text).html_safe
+    end
     
     def optionsForm(form, ops)
         a = ("<input type=\"hidden\" name=\"#{form}[options]\" id=\"options_form\" value=\"#{ops}\">").html_safe
