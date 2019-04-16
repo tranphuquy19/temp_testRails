@@ -44,7 +44,9 @@ class TestSessionsController < ApplicationController
                     list_exams = pars[:list_exams].split("\r\n")
                     le = []
                     list_exams.each do |title|
-                    le.push Exam.find_by(title: title).id
+                        #le.push Exam.find_by(title: title).id
+                        Exam.where(test_session_id: pars[:id].to_i)
+                        Exam.find_by(title: title).
                     end
                     ts.update_attributes(list_exams: le.join(","))
                 when "members"

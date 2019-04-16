@@ -119,7 +119,8 @@ namespace :seeder do
     exam_list.each do |title, time_remaining, qBegin, qEnd, user_id, img, category_id|
       a = Array(qBegin..qEnd).join(",")
       temp2 = query_ts.pop
-      Exam.create(title: title, list_questions: a, category_id: category_id, user_id: r.rand(1...4), test_session_id: temp2)
+      temp3 = Exam.create(title: title, list_questions: a, category_id: category_id, user_id: r.rand(1...4))
+      TestExam.create(test_session_id: temp2, exam_id: temp3.id)
     end
   end
 

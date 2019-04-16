@@ -112,7 +112,7 @@
                     </section>
                 </div>
                 <div id="listExams" class="tab-pane">
-                    <% @list_exams = @test_session.list_exams.split(",")%>
+                    <% @list_exams = @test_session.exams.ids%>
                     <%= render partial: '/test_sessions/list_exams'%>
                 </div>
                 <div id="listMembers" class="tab-pane">
