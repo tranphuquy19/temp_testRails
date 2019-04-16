@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/exams', to: 'exams#show'
   post '/test_sessions/update', to: 'test_sessions#update'
   post '/test_sessions/create', to: 'test_sessions#create'
+  post '/search/:id', to: 'search#index', :as => :search_page
   resources :posts
   resources :tests
   resources :test_sessions

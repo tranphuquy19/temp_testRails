@@ -36,7 +36,8 @@ namespace :seeder do
     user_list.each do |name, email, pass|
       User.create(name: name, email: email, password: pass)
     end
-    47.times do |i|
+    47.times do |e|
+      i = e + 4
       User.create(name: "user"+i.to_s, email: "user"+i.to_s+"@exam.com", password: "123456789")
     end
   end

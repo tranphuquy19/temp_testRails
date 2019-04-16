@@ -9,6 +9,8 @@ gem 'rails', '~> 5.2.3'
 gem 'sqlite3', '~> 1.3.6'
 gem 'clearance'
 gem 'faker', '~> 1.6', '>= 1.6.3'
+#search 
+gem "ransack"
 gem 'unirest'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
