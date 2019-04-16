@@ -4,7 +4,8 @@ module ApplicationHelper
         if isSessionMember
             public_time = @test_session.time_public.utc
             current_time = Time.now.utc
-            if((current_time - public_time)/60 <= @test_session.time_remaining)
+            finish_time = (current_time - public_time)/60
+            if( finish_time <= @test_session.time_remaining && finish_time >=0)
                 return true
             else
                 return false
