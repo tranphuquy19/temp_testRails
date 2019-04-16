@@ -14,10 +14,10 @@ namespace :seeder do
     puts "Seeding posts"
     Rake::Task["seeder:question"].invoke
     puts "Seeding questions"
-    Rake::Task["seeder:exam"].invoke
-    puts "Seeding exams"
     Rake::Task["seeder:testSession"].invoke
     puts "Seeding test sessions"
+    Rake::Task["seeder:exam"].invoke
+    puts "Seeding exams"
     Rake::Task["seeder:sessionMember"].invoke
     puts "Seeding session members"
     Rake::Task["seeder:classs"].invoke
@@ -110,9 +110,16 @@ namespace :seeder do
       ["Kiểm tra Homework đề 8 ", 30, 128, 148, 3, "category/homework-8.jpg", 6]
     ]
     r = Random.new
+    count_temp = TestSession.count
+    query_ts = []
+    4.times do
+      temp = (1..count_temp).to_a.shuffle
+      query_ts.concat temp
+    end
     exam_list.each do |title, time_remaining, qBegin, qEnd, user_id, img, category_id|
       a = Array(qBegin..qEnd).join(",")
-      Exam.create(title: title, list_questions: a, category_id: category_id, user_id: r.rand(1...4))
+      temp2 = query_ts.pop
+      Exam.create(title: title, list_questions: a, category_id: category_id, user_id: r.rand(1...4), test_session_id: temp2)
     end
   end
 
@@ -177,7 +184,7 @@ namespace :seeder do
     ]
     testSesss_list.each do |content, datetime, list_exams, category_id, user_id, img, time_remaining|
       d = Time.strptime(datetime, "%m/%d/%Y %H:%M").strftime("%Y-%m-%d %H:%M:00")
-      TestSession.create(content: content, list_exams: list_exams, time_public: d, user_id: user_id, category_id: category_id, img: img, time_remaining: time_remaining)
+      TestSession.create(content: content, time_public: d, user_id: user_id, category_id: category_id, img: img, time_remaining: time_remaining)
     end
   end
 
