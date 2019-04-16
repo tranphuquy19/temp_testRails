@@ -64,7 +64,6 @@ ActiveRecord::Schema.define(version: 2019_04_05_135953) do
 
   create_table "exams", force: :cascade do |t|
     t.string "title"
-    t.integer "time_remaining"
     t.text "list_questions"
     t.integer "category_id"
     t.integer "user_id"
@@ -124,11 +123,16 @@ ActiveRecord::Schema.define(version: 2019_04_05_135953) do
     t.integer "exam_id"
     t.integer "category_id"
     t.integer "user_id"
+    t.integer "test_session_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_test_papers_on_category_id"
     t.index ["exam_id"], name: "index_test_papers_on_exam_id"
+    t.index ["test_session_id"], name: "index_test_papers_on_test_session_id"
     t.index ["user_id"], name: "index_test_papers_on_user_id"
+    t.index [nil], name: "index_test_papers_on_exam"
+    t.index [nil], name: "index_test_papers_on_test_session"
+    t.index [nil], name: "index_test_papers_on_user"
   end
 
   create_table "test_sessions", force: :cascade do |t|
@@ -136,6 +140,7 @@ ActiveRecord::Schema.define(version: 2019_04_05_135953) do
     t.text "list_exams"
     t.string "img", default: "projects/project.jpg"
     t.datetime "time_public"
+    t.integer "time_remaining"
     t.integer "category_id"
     t.integer "user_id"
     t.datetime "created_at", null: false

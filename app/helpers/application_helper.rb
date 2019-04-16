@@ -1,6 +1,7 @@
 require 'redcarpet'
 include Clearance::Controller
 module ApplicationHelper
+    include Clearance::Controller
     #Convert markdown to HTML
     def markdown(text)
         markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML,
@@ -15,6 +16,15 @@ module ApplicationHelper
             return markdown.render(text).html_safe
     end
     
+    
+    def timePickerToDateTime(time)
+        DateTime.strptime(time, "%m/%d/%Y %I:%M %p")
+    end
+
+    def dateTimeToTimePicker(datetime)
+        datetime.strftime("%m/%d/%Y %I:%M %p")
+    end
+
     def optionsForm(form, ops)
         a = ("<input type=\"hidden\" name=\"#{form}[options]\" id=\"options_form\" value=\"#{ops}\">").html_safe
     end
@@ -48,6 +58,7 @@ module ApplicationHelper
             isAdmin ? true : false
         else 
             redirect_to sign_in_path
+            return false
         end
 
     end
