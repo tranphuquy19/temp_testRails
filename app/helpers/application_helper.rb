@@ -2,7 +2,7 @@ require 'redcarpet'
 include Clearance::Controller
 module ApplicationHelper
     include Clearance::Controller
-<<<<<<< HEAD
+
     #Convert markdown to HTML
     def markdown(text)
         markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML,
@@ -16,9 +16,7 @@ module ApplicationHelper
            )
             return markdown.render(text).html_safe
     end
-    
-    
-=======
+
     def allow_examinations
         if isSessionMember
             public_time = @test_session.time_public.utc
@@ -42,7 +40,7 @@ module ApplicationHelper
         end
     end
 
->>>>>>> origin/create_testSessions_tpq
+
     def timePickerToDateTime(time)
         Time.strptime(time, "%m/%d/%Y %I:%M %p")
     end
