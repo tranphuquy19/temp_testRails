@@ -42,11 +42,11 @@ class TestSessionsController < ApplicationController
                     ts.update_attributes(content: pars[:content], user_id: User.find_by(email: pars[:user]).id, time_remaining: pars[:time_remaining], time_public: timePickerToDateTime(pars[:time_public]))
                 when "exams"
                     list_exams = pars[:list_exams].split("\r\n")
-                    le = []
+                    TestSession.find(ts.id).exams.destroy_all
                     list_exams.each do |title|
-                    le.push Exam.find_by(title: title).id
+                        temp5 = Exam.find_by(title: title).id
+                        TestExam.create(test_session_id: ts.id, exam_id: temp5)
                     end
-                    ts.update_attributes(list_exams: le.join(","))
                 when "members"
                     emails = pars[:list_members].split("\r\n")
                     sm = ts.session_members.destroy_all

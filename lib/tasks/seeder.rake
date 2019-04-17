@@ -36,7 +36,8 @@ namespace :seeder do
     user_list.each do |name, email, pass|
       User.create(name: name, email: email, password: pass)
     end
-    47.times do |i|
+    47.times do |e|
+      i = e + 4
       User.create(name: "user"+i.to_s, email: "user"+i.to_s+"@exam.com", password: "123456789")
     end
   end
@@ -119,7 +120,8 @@ namespace :seeder do
     exam_list.each do |title, time_remaining, qBegin, qEnd, user_id, img, category_id|
       a = Array(qBegin..qEnd).join(",")
       temp2 = query_ts.pop
-      Exam.create(title: title, list_questions: a, category_id: category_id, user_id: r.rand(1...4), test_session_id: temp2)
+      temp3 = Exam.create(title: title, list_questions: a, category_id: category_id, user_id: r.rand(1...4))
+      TestExam.create(test_session_id: temp2, exam_id: temp3.id)
     end
   end
 
