@@ -51,7 +51,7 @@ class TestSessionsController < ApplicationController
                     emails = pars[:list_members].split("\r\n")
                     sm = ts.session_members.destroy_all
                     emails.each do |email|
-                        SessionMember.create(user_id: User.find_by(email: email).id, test_session_id: 11)
+                        SessionMember.create(user_id: User.find_by(email: email).id, test_session_id: ts.id)
                         #add_feature=> try-catch if User (:email) not found
                     end
                 end
@@ -62,9 +62,12 @@ class TestSessionsController < ApplicationController
     def create
         if isAdmin
             pars = params[:session]
-            le = pars[:list_exams].split("\r\n").join(",")
+            le = pars[:list_exams].split("\r\n")
             lm = pars[:list_members].split("\r\n")
-            u = current_user.test_sessions.create(content: pars[:content], list_exams: le, time_public: timePickerToDateTime(pars[:time_public]), time_remaining: pars[:time_remaining], category_id: pars[:category_id].to_i)
+            u = current_user.test_sessions.create(content: pars[:content], time_public: timePickerToDateTime(pars[:time_public]), time_remaining: pars[:time_remaining], category_id: pars[:category_id].to_i)
+            le.each do |title|
+                TestExam.create(test_session_id: u.id, exam_id: Exam.find_by(title: title).id)
+            end
             lm.each do |email|
                 SessionMember.create(user_id: User.find_by(email: email).id, test_session_id: u.id)
             end
@@ -74,5 +77,16 @@ class TestSessionsController < ApplicationController
     end
 
     def destroy
+    end
+
+    def create_test_paper
+        pars = params[:session]
+        @test_session = TestSession.find(pars[:submit])
+        if allow_examinations
+            TestPaper.create(exam_id: pars[:submit].to_i, test_session_id: @test_session.id, category_id: @test_session.category.id, user_id: current_user.id)
+            redirect_to exams_show_path
+        else
+            redirect_to home_path
+        end
     end
 end

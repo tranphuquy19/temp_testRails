@@ -2,6 +2,7 @@ require 'redcarpet'
 include Clearance::Controller
 module ApplicationHelper
     include Clearance::Controller
+<<<<<<< HEAD
     #Convert markdown to HTML
     def markdown(text)
         markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML,
@@ -17,8 +18,33 @@ module ApplicationHelper
     end
     
     
+=======
+    def allow_examinations
+        if isSessionMember
+            public_time = @test_session.time_public.utc
+            current_time = Time.now.utc
+            finish_time = (current_time - public_time)/60
+            if( finish_time <= @test_session.time_remaining && finish_time >=0)
+                return true
+            else
+                return false
+            end
+        else
+            return false
+        end
+    end
+
+    def isSessionMember
+        if signed_in?
+            return SessionMember.where(user_id: current_user.id, test_session_id: @test_session.id).exists?
+        else
+            return false
+        end
+    end
+
+>>>>>>> origin/create_testSessions_tpq
     def timePickerToDateTime(time)
-        DateTime.strptime(time, "%m/%d/%Y %I:%M %p")
+        Time.strptime(time, "%m/%d/%Y %I:%M %p")
     end
 
     def dateTimeToTimePicker(datetime)
@@ -33,17 +59,6 @@ module ApplicationHelper
         hidden_field_tag :authenticity_token, form_authenticity_token
     end
     
-    def nameNotNil
-        if signed_in?
-            if current_user.name.blank?
-                return false
-            else
-                return true
-            end
-        else
-            return false
-        end
-    end
 
     def isAdmin
         if signed_in? == false

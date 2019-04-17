@@ -26,7 +26,16 @@
                     <% end %>
                 </div>
                 <div class="row">
-                    <p><span><b>Thời gian kiểm tra: </b><i class="fa fa-calendar"></i> <%= @test_session.time_public %></span></p>
+                    <p><span><b>Thời gian kiểm tra: </b><i class="fa fa-calendar"></i> <%= @test_session.time_public %> | <b> Thời lượng: <i class="fa fa-clock-o"></i> </b><%= @test_session.time_remaining %> phút</span></p>
+                    <%if allow_examinations %>
+                    <form class="form-horizontal" method="post" accept-charset="UTF-8" action="/test_sessions/create_test_paper">
+                        <%= csrf %>
+                        <%= optionsForm("session", "create_test_paper")%>
+                        <div class="form-group">
+                            <button class="btn btn-3d btn-secondary mr-xs mb-sm" name="session[submit]" type="submit" value="<%= @test_session.id%>">Thi</button>
+                        </div>
+                    </form>
+                    <% end %>
                     <p><span><i class="fa fa-users"></i> Danh sách thí sinh</span></p>
                     <div class="row sample-icon-list">
                         <% sms = SessionMember.where(test_session_id: @test_session.id)%>
