@@ -9,10 +9,6 @@
 
   <title>Test online | <%= @title %></title>
 
-  <meta name="keywords" content="HTML5 Template" />
-  <meta name="description" content="Porto - Responsive HTML5 Template" />
-  <meta name="author" content="okler.net" />
-
   <!-- Favicon -->
   <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
   <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
@@ -346,16 +342,24 @@
 
   <!-- Theme Initialization Files -->
   <script src="/js/theme.init.js"></script>
-
+  <script src="/js/autosize.min.js"></script>
+  <script src="/js/showdown.min.js"></script>
+  <script src="/js/showdown-youtube.min.js"></script>
   <%if @url != nil %>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.js"></script>
+  
+  <%# <script src="/js/showdown-github.min.js"></script> %>
   <script>
-    $.get('<%= @url %>', function (data) {
+    var pageURL = $(location).attr("href");
+    $.get(pageURL+'/md', function (data) {
       var content = data;
-      var converter = new showdown.Converter();
+      //var converter = new showdown.Converter();
+      var converter = new showdown.Converter({extensions: ['youtube'], tables: true});
+
       var md_html = converter.makeHtml(content);
       $('#pContent').append(md_html);
+      var t = $('table').addClass('table')
     });
+    
   </script>
   <% end %>
   <script type="text/javascript">
@@ -364,7 +368,23 @@
     });
     $(document).key('ctrl+shift+f', function() {
       $('#formModal').modal();
-});
+    });
+    $(document).key('ctrl+shift+h', function(){
+      var origin_link = $(location).attr('host');
+      window.open(origin_link+'/posts/howtomarkdown');
+      //window.open('https://www.google.com');
+    });
+    autosize(document.getElementById('create_post_textarea'));
+  </script>
+  <script type="text/javascript">
+    $.get('/posts/markdown', function (data) {
+      var content = data;
+      //var converter = new showdown.Converter();
+      var converter = new showdown.Converter({extensions: ['youtube'], tables: true});
+      var md_help = converter.makeHtml(content);
+      $('#helpmarkdown').append(md_help);
+      var t = $('table').addClass('table')
+    });
   </script>
 </body>
 

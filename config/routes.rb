@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
   get '/posts/:id/md', to: 'posts#markdown'
+  get '/posts/markdown', to: 'posts#helpmarkdown'
+  get '/posts/howtomarkdown', to: 'posts#howtomarkdown'
   get '/home', to: 'home#show'
   get '/edit', to: 'test_sessions#edit'
   get '/exams', to: 'exams#show'
   post '/test_sessions/update', to: 'test_sessions#update'
   post '/test_sessions/create', to: 'test_sessions#create'
   post '/test_sessions/create_test_paper', to: 'test_sessions#create_test_paper'
+  post '/posts/create', to: 'posts#create'
   post '/search/:id', to: 'search#index', :as => :search_page
   resources :posts
   resources :tests
