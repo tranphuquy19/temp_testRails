@@ -1,4 +1,3 @@
-<% provide(:title, 'Exam') %>
 <%= form_for :exam, url: exam_path do |form| %>
 
     <% @timeRemaining = getTimeRemaining(@exam_id)%>
@@ -13,7 +12,7 @@
             var minutes     = Math.floor(minutesLeft/60);
             var remainingSeconds = seconds % 60;
         function pad(n) {
-            return (n < 10 ? "0" + n : n);
+            return (n < 10 ? "0" + n : n);postSearch
         }
         document.getElementById('countdown').innerHTML = pad(hours) + ":" + pad(minutes) + ":" + pad(remainingSeconds);
         if (seconds == 0) {
@@ -28,17 +27,25 @@
     <style type="text/css">
         .flip-clock-wrapper{
             
-            border: 1px solid red;
-            font-size: 30px;
+            align:left;
+            background: aquamarine;
+            font-size: 3vh;
             position: fixed;
-            margin-right: 10%;
+            cursor: pointer;
+            -webkit-user-select: none;
+            border:2px solid aqua;
+            color: darkslategray;
+        }
+        .text-right{
+            margin-right: 90px;
+            
         }
     </style>
+    
     <div class="col text-right">
-        <span id="countdown" class="timer flip-clock-wrapper"></span>
-    </div>
-
-    <% @list = getAllQuestionID(@exam_id)%>
+            <span id="countdown" class="timer flip-clock-wrapper"></span>
+        </div>
+        <% @list = getAllQuestionID(@exam_id)%>
     <% $i=0 %>
     <% @list.each do |li|%> 
       <% $i+=1 %>

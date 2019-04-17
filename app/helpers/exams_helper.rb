@@ -6,7 +6,8 @@ module ExamsHelper
 
     def getTimeRemaining(_exam_id)
         id = _exam_id.to_i
-        timeRemaining = Exam.find(id).time_remaining * 60
+        tsid = Exam.find(id).test_sessions.ids   
+        timeRemaining = TestSession.find(tsid[0]).time_remaining * 60
     end
 
     def getCorrectAnwsers(_exam_id)
