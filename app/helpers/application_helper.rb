@@ -85,6 +85,12 @@ module ApplicationHelper
             redirect_to sign_in_path
             return false
         end
+    end
+
+    def require_signed
+        if signed_in? == false
+            redirect_to sign_in_path
+        end
 
     end
 end

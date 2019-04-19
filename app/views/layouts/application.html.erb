@@ -7,7 +7,7 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-  <title>Test online | <%= @title %></title>
+  <title><%= @title %> | Test online</title>
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="/img/icon_title.png" type="image/x-icon" />
@@ -78,7 +78,8 @@
                     <%= csrf %>
                     <%= optionsForm("home", "search")%>
                     <div class="input-group">
-                      <input type="text" class="form-control" name="home[key]" id="q" placeholder="Search..." required />
+                      <input type="text" class="form-control" name="home[key]" id="q" placeholder="Search..."
+                        required />
                       <span class="input-group-btn">
                         <button class="btn btn-default" type="submit">
                           <i class="fa fa-search"></i>
@@ -136,7 +137,7 @@
                               <a href="/posts/new">New Post</a>
                             </li>
                             <li>
-                              <a href="/users/posts">My Posts</a>
+                              <a href="/users/home#recent">My Posts</a>
                             </li>
                           </ul>
                         </li>
@@ -288,7 +289,7 @@
           <div class="col-md-1">
             <a href="index.html" class="logo">
               <img alt="Porto" width="70" height="70" data-sticky-width="52" data-sticky-height="52"
-                    data-sticky-top="33" src="/img/icon_title.png" />
+                data-sticky-top="33" src="/img/icon_title.png" />
             </a>
           </div>
           <div class="col-md-7">
@@ -347,43 +348,44 @@
   <script src="/js/showdown.min.js"></script>
   <script src="/js/showdown-youtube.min.js"></script>
   <%if @url != nil %>
-  
+
   <%# <script src="/js/showdown-github.min.js"></script> %>
   <script>
     var pageURL = $(location).attr("href");
-    $.get(pageURL+'/md', function (data) {
+    $.get(pageURL + '/md', function (data) {
       var content = data;
       //var converter = new showdown.Converter();
-      var converter = new showdown.Converter({extensions: ['youtube'], tables: true});
+      var converter = new showdown.Converter({ extensions: ['youtube'], tables: true });
 
       var md_html = converter.makeHtml(content);
       $('#pContent').append(md_html);
       var t = $('table').addClass('table')
     });
-    
+
   </script>
   <% end %>
   <script type="text/javascript">
     $(function () {
       $('#datetimepicker4').datetimepicker();
     });
-    $(document).key('ctrl+shift+f', function() {
+    $(document).key('ctrl+shift+f', function () {
       $('#formModal').modal();
     });
-    $(document).key('ctrl+shift+h', function(){
+    $(document).key('ctrl+shift+h', function () {
       var origin_link = $(location).attr('host');
-      window.open('http://'+origin_link+'/posts/howtomarkdown');
+      window.open('http://' + origin_link + '/posts/howtomarkdown');
       //window.open('https://www.google.com');
     });
     autosize(document.getElementById('create_post_textarea'));
     $.get('/posts/markdown', function (data) {
       var content = data;
       //var converter = new showdown.Converter();
-      var converter = new showdown.Converter({extensions: ['youtube'], tables: true});
+      var converter = new showdown.Converter({ extensions: ['youtube'], tables: true });
       var md_help = converter.makeHtml(content);
       $('#helpmarkdown').append(md_help);
       var t = $('table').addClass('table')
     });
+    
   </script>
 </body>
 
