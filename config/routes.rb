@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   post '/search/:id', to: 'search#index', :as => :search_page
   get '/users/home', to: 'users#home'
   post '/users/update', to: 'users#update'
+  post '/exams/update', to: 'exams#update'
   resources :posts
   resources :tests
   resources :test_sessions

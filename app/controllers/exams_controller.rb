@@ -1,38 +1,29 @@
 class ExamsController < ApplicationController
     include Clearance::Controller
-    skip_before_action :verify_authenticity_token
+    include ApplicationHelper
+    before_action :ifNotAdmin
+
     def show
-        @title = Exam 
-        @test_session_id = TestPaper.last.test_session_id
-        @timeRemaining = 0
-        if allow_examinations
-            public_time = TestSession.find(@test_session_id).time_public.utc
-            current_time = Time.now.utc
-            @timeRemaining = (current_time-public_time).to_i
-        else
+    end
+
+    def create   
+    end
+    
+    def update
+        pars = params[:exam]
+        list_questions = pars[:list_questions].split("\r\n").map{|tag| tag.strip}.join(",")
+        p list_questions
+        Exam.find(pars[:id].to_i).update_attributes(title: pars[:title], category_id: Category.find_by(title: pars[:category]))
+    end
+    
+
+    def edit
+        @exam = Exam.find(params[:id])
+    end
+
+    def ifNotAdmin
+        if checkAuth == false
             redirect_to home_path
         end
     end
-
-    def allow_examinations
-        if signed_in?
-            if SessionMember.where(user_id: current_user.id, test_session_id: @test_session_id).exists?
-                return true
-            else
-                return false
-            end
-        else
-            return false
-        end
-    end
-
-    def create
-       redirect_to home_path
-    end
-
-    def final
-        arrayAnswer = params[:answers]
-        
-    end
-    
 end
