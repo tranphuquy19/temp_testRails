@@ -1,4 +1,4 @@
-class ExamsController < ApplicationController
+class TestPapersController < ApplicationController
     include Clearance::Controller
     skip_before_action :verify_authenticity_token
     def show
@@ -34,5 +34,4 @@ class ExamsController < ApplicationController
         arrayAnswer = params[:answers]
         
     end
-    
 end
