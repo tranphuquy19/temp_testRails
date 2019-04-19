@@ -1,20 +1,33 @@
 module ExamsHelper
-    def getAllQuestionID(_exam_id)
-        id = _exam_id.to_i
-        list_questionID = Exam.find(id).list_questions.split(",")
+    def getAllQuestionID(_test_session_id)
+        tsid = _test_session_id.to_i
+        ts = TestSession.find(tsid)
+        _exam_ids = ts.exams.ids 
+        list_questionID = []
+        _exam_ids.each do |id|
+            list_temp = Exam.find(id).list_questions.split(",")
+            list_questionID.concat list_temp
+        end
+
+        return list_questionID
     end
 
-    def getTimeRemaining(_exam_id)
-        id = _exam_id.to_i
-        tsid = Exam.find(id).test_sessions.ids   
-        timeRemaining = TestSession.find(tsid[0]).time_remaining * 60
+    def getTimeRemaining(_test_session_id)   
+        timeRemaining = TestSession.find(_test_session_id).time_remaining * 60
     end
 
-    def getCorrectAnwsers(_exam_id)
-        id = _exam_id.to_i
-        list_questions = Exam.find(id).list_questions.split(",")
+    def getCorrectAnwsers(_test_session_id)
+        tsid = _test_session_id.to_i
+        ts = TestSession.find(tsid)
+        _exam_ids = ts.exams.ids 
+        list_questionID = []
+        _exam_ids.each do |id|
+            list_temp = Exam.find(id).list_questions.split(",")
+            list_questionID.concat list_temp
+        end
+
         list_anwsers = []
-        list_questions.each do |li|
+        list_questionID.each do |li|
             temp = li.to_i
             list_anwsers.push(Question.find(temp).key)
         end

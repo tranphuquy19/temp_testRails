@@ -1,6 +1,6 @@
 <%= form_for :exam, url: exams_path do |form| %>
 
-    <% @timeRemaining = getTimeRemaining(@exam_id)%>
+    <% @timeRemaining = getTimeRemaining(@test_session_id)%>
     <script>
         var upgradeTime = <%= @timeRemaining %> ;
         var seconds = upgradeTime;
@@ -45,7 +45,7 @@
     <div class="col text-right">
             <span id="countdown" class="timer flip-clock-wrapper" type="" name="exam[save]" value="cc"></span>
         </div>
-        <% @list = getAllQuestionID(@exam_id)%>
+        <% @list = getAllQuestionID(@test_session_id)%>
     <% $i=0 %>
     <% @list.each do |li|%> 
       <% $i+=1 %>
@@ -108,7 +108,7 @@
     </form>
     <%= params[:exam_id] %>
 
-    <% @listCorrectAnwsers = getCorrectAnwsers(@exam_id)%>
+    <% @listCorrectAnwsers = getCorrectAnwsers(@test_session_id)%>
 
     <script>
         var listCA = <%=raw @listCorrectAnwsers %>;
