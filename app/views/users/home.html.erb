@@ -144,8 +144,21 @@
                                                             <span
                                                                 class="month"><%= test_session.created_at.strftime("%b") %></span>
                                                         </div>
+                                                        <% t = TestPaper.where(user_id: current_user.id, test_session_id: test_session.id)%>
+                                                        <% if t.exists?
+                                                            if t.last.point != nil
+                                                                d = t.last.point
+                                                                max = t.last.exam.list_questions.split(",").count
+                                                                mesg = "[Điểm: "+d.to_s+"/"+max.to_s+"]"
+                                                            else
+                                                                mesg = "[Chưa có kết quả]"
+                                                            end 
+                                                        else
+                                                            mesg = "[Chưa có kết quả]"
+                                                        end %>
+
                                                         <h4><a
-                                                                href="/test_sessions/<%= test_session.id %>"><%= test_session.content[0..50]%></a>
+                                                                href="/test_sessions/<%= test_session.id %>"><%= test_session.content[0..50] +" | "+ mesg%></a>
                                                         </h4>
                                                         <p></p>
                                                         <div class="post-meta">

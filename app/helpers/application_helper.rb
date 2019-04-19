@@ -30,6 +30,29 @@ module ApplicationHelper
         end
     end
     
+    def isSessionMembers(test_session)
+        if signed_in?
+            return SessionMember.where(user_id: current_user.id, test_session_id: test_session.id).exists?
+        else
+            return false
+        end
+    end
+
+    def allow_examination(test_session)
+        if isSessionMembers(test_session)
+            public_time = test_session.time_public.utc
+            current_time = Time.now.utc
+            finish_time = (current_time - public_time)/60
+            if( finish_time <= test_session.time_remaining && finish_time >=0)
+                return true
+            else
+                return false
+            end
+        else
+            return false
+        end
+    end
+
     def allow_examinations
         if isSessionMember
             public_time = @test_session.time_public.utc
