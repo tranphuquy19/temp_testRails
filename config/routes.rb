@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   post '/test_sessions/create', to: 'test_sessions#create'
   post '/test_sessions/create_test_paper', to: 'test_sessions#create_test_paper'
   post '/posts/create', to: 'posts#create'
+  post '/posts/update', to: 'posts#update'
+  get '/posts/:id/edit', to: 'posts#edit'
   post '/search/:id', to: 'search#index', :as => :search_page
   resources :posts
   resources :tests

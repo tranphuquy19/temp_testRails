@@ -1,7 +1,7 @@
 module ApplicationHelper
     include Clearance::Controller
-    def isPostOwner(user_id, post_id)
-        if user_id != user_id
+    def isPostOwner(post_id)
+        if current_user.id != post_id
             return false
         else
             return true
