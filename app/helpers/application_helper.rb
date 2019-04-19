@@ -1,10 +1,14 @@
 module ApplicationHelper
     include Clearance::Controller
     def isPostOwner(post_id)
-        if current_user.id != post_id
-            return false
+        if signed_in?
+            if current_user.id != post_id
+                return false
+            else
+                return true
+            end
         else
-            return true
+            return false
         end
     end
     def allow_examinations
