@@ -388,7 +388,27 @@
       $('#helpmarkdown').append(md_help);
       var t = $('table').addClass('table')
     });
-    
+    key_id = "";
+    $("#btnAdd").click(function(){
+      current_value = $("#list_questions").val();
+      $("#list_questions").val(current_value+key_id);
+    });
+    $("#changebox").on("input", function(){
+      data = $("#changebox").val();
+      //console.log(data);
+      $.post( "/jquery", { key: data }, function(result){
+        $("#qtResult").val("");
+        temp = "";
+        cont = "";
+        result.forEach(function(item){
+          console.log(item.content)
+            temp += item.id + "\r\n";
+            cont += item.content + "\r\n";
+        });
+        $("#qtResult").val(cont);
+        key_id = temp;
+      });
+    });
   </script>
 </body>
 

@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get '/users/home', to: 'users#home'
   post '/users/update', to: 'users#update'
   post '/exams/update', to: 'exams#update'
+  post '/jquery', to: 'search_jquery#getQuestion'
   resources :posts
   resources :tests
   resources :test_sessions

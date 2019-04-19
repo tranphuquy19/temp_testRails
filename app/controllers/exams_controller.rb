@@ -23,7 +23,7 @@ class ExamsController < ApplicationController
     def update
         pars = params[:exam]
         list_questions = pars[:list_questions].split("\r\n").map{|tag| tag.strip}.join(",")
-        Exam.find(pars[:id].to_i).update_attributes(title: pars[:title], category_id: Category.find_by(title: pars[:category]).id)
+        Exam.find(pars[:id].to_i).update_attributes(title: pars[:title], category_id: Category.find_by(title: pars[:category]).id, list_questions: list_questions)
     end
     
 
