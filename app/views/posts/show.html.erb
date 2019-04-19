@@ -25,7 +25,17 @@
                             <a href="/posts/search/?t=<%= tag %>"><%= tag %></a>,
                             <% end %>
                         </span>
-                        <span><i class="fa fa-comments"></i> <a href="#"><%= @post.comments.count %> Comments</a></span>
+                        
+                        
+                        <span>
+                            <i class="fa fa-comments"></i> <a href="#"><%= @post.comments.count %> Comments</a>
+                        </span>
+                        
+                        <% if isPostOwner(@post.user.id) == true%>
+                        <span>
+                            <a href="/posts/<%= @post.id %>/edit"><i class="fa fa-edit"> Chỉnh sửa</i></a>
+                        </span>
+                        <% end %>
                     </div>
 
                     <div class="content-post" id="pContent">
