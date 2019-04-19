@@ -84,12 +84,18 @@ class TestSessionsController < ApplicationController
         @test_session = TestSession.find(pars[:submit])
         if allow_examinations
             if(TestPaper.where(test_session_id: @test_session.id, user_id: current_user.id).empty? == false)
-                tp = TestPaper.where(test_session_id: @test_session.id, user_id: current_user.id)
-                tp.update(content:"",point: nil)
+                if TestPaper.where(user_id: current_user.id, test_session_id: @test_session.id).last.point != nil 
+                    redirect_to  '/users/home'
+                else
+                    tp = TestPaper.where(test_session_id: @test_session.id, user_id: current_user.id)
+                    tp.update(content:"",point: nil)
+                    redirect_to test_papers_page_path
+                end
             else
                 TestPaper.create(exam_id: pars[:submit].to_i, test_session_id: @test_session.id, category_id: @test_session.category.id, user_id: current_user.id)
+                redirect_to test_papers_page_path
             end
-            redirect_to test_papers_page_path
+            
         else
             redirect_to home_path
         end

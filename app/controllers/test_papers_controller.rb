@@ -17,7 +17,9 @@ class TestPapersController < ApplicationController
             else
                 public_time = TestSession.find(@test_session_id).time_public.utc
                 current_time = Time.now.utc
-                @timeRemaining = (current_time-public_time).to_i
+                ts = TestSession.find(@test_session_id).time_remaining*60
+                time = ts.to_i-(current_time-public_time).to_i
+                @timeRemaining = time
             end
         else
             redirect_to home_path

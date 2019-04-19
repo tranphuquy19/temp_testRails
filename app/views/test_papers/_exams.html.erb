@@ -1,5 +1,4 @@
 <%= form_for :exam, url: test_papers_page_path do |form| %>
-
     <script>
         var upgradeTime = <%= @timeRemaining %> ;
         var seconds = upgradeTime;
@@ -17,6 +16,22 @@
         if (seconds == 0) {
             clearInterval(countdownTimer);
             document.getElementById('countdown').innerHTML = "Hết giờ làm bài!";
+             var element = $(".custom-control-label");
+                var arrayAnswer = [];
+                var checkbox = $(".custom-control-input");
+                for(var i=0;i<checkbox.length/4;i++){
+                    for(var j=0;j<4;j++){
+                        if(checkbox[i*4+j].checked==true){
+                            arrayAnswer[i]=element[i*4+j].id;
+                        }
+                    }
+                    if(arrayAnswer[i]==null){
+                        arrayAnswer[i]="x";
+                    }
+                }
+                $.post('/test_papers/final',
+                        {answers: arrayAnswer},
+                    );
         } else {
         seconds--;
         }
