@@ -1,4 +1,5 @@
 class ExamsController < ApplicationController
+    include ApplicationHelper
     def show
         @title = Exam 
         @test_session_id = TestPaper.last.test_session_id
@@ -10,7 +11,6 @@ class ExamsController < ApplicationController
             
         end
     end
-    
     def create
        _answers = params[:answers]
        _point = params[:point]
