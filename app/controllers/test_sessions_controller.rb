@@ -85,6 +85,10 @@ class TestSessionsController < ApplicationController
         if allow_examinations
             TestPaper.create(exam_id: pars[:submit].to_i, test_session_id: @test_session.id, category_id: @test_session.category.id, user_id: current_user.id)
             redirect_to exams_path
+            if(TestPaper.where(test_session_id: @test_session.id, user_id: current_user.id).empty? == true)
+                TestPaper.create(exam_id: pars[:submit].to_i, test_session_id: @test_session.id, category_id: @test_session.category.id, user_id: current_user.id)
+            end
+            redirect_to exams_show_path
         else
             redirect_to home_path
         end
