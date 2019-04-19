@@ -1,6 +1,5 @@
 <%= form_for :exam, url: exams_path do |form| %>
 
-    <% @timeRemaining = getTimeRemaining(@test_session_id)%>
     <script>
         var upgradeTime = <%= @timeRemaining %> ;
         var seconds = upgradeTime;

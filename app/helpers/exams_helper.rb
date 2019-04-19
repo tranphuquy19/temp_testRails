@@ -12,10 +12,6 @@ module ExamsHelper
         return list_questionID
     end
 
-    def getTimeRemaining(_test_session_id)   
-        timeRemaining = TestSession.find(_test_session_id).time_remaining * 60
-    end
-
     def getCorrectAnwsers(_test_session_id)
         tsid = _test_session_id.to_i
         ts = TestSession.find(tsid)
