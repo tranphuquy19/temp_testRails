@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+    include ApplicationHelper
     def helpmarkdown
         render '/posts/helpmarkdown.text.erb', layout: false, content_type: 'text/plain'
     end
@@ -24,6 +25,19 @@ class PostsController < ApplicationController
     end
 
     def update
+    end
+
+    def edit
+        id = params[:id]
+        if signed_in?
+            if isPostOwner(id)
+                @post = Post.find(id)
+            else
+                redirect_to home_path
+            end
+        else
+            redirect_to home_path
+        end
     end
 
     def new
