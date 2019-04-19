@@ -1,6 +1,12 @@
 class UsersController < ApplicationController
     include ApplicationHelper
-    before_action :require_signed
+    before_action :require_signed, except: [:show]
+
+    def show
+        @title = current_user.email
+        @user = User.find(params[:id])
+        render "guest"
+    end
 
     def home
         @title = "Profiles"

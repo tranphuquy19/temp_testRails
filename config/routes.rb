@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   post '/users/update', to: 'users#update'
   post '/exams/update', to: 'exams#update'
   post '/jquery', to: 'search_jquery#getQuestion'
+  get '/users/:id', to: 'users#show'
   resources :posts
   resources :tests
   resources :test_sessions
