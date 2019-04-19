@@ -390,8 +390,8 @@
     });
     key_id = "";
     $("#btnAdd").click(function(){
-      current_value = $("#list_questions").val();
-      $("#list_questions").val(current_value+key_id);
+      current_value = $.trim($("#list_questions").val());
+      $("#list_questions").val($.trim(current_value+"\r\n"+key_id));
     });
     $("#changebox").on("input", function(){
       data = $("#changebox").val();
@@ -403,10 +403,10 @@
         result.forEach(function(item){
           console.log(item.content)
             temp += item.id + "\r\n";
-            cont += item.content + "\r\n";
+            cont += item.content +" ["+item.id+"]"+ "\r\n";
         });
         $("#qtResult").val(cont);
-        key_id = temp;
+        key_id = $.trim(temp);
       });
     });
   </script>
