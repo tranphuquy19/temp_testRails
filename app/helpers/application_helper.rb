@@ -2,6 +2,7 @@ require 'redcarpet'
 include Clearance::Controller
 module ApplicationHelper
     include Clearance::Controller
+
     #Convert markdown to HTML
     def markdown(text)
         markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML,
@@ -28,6 +29,7 @@ module ApplicationHelper
             return false
         end
     end
+    
     def allow_examinations
         if isSessionMember
             public_time = @test_session.time_public.utc
@@ -83,6 +85,12 @@ module ApplicationHelper
         else 
             redirect_to sign_in_path
             return false
+        end
+    end
+
+    def require_signed
+        if signed_in? == false
+            redirect_to sign_in_path
         end
 
     end

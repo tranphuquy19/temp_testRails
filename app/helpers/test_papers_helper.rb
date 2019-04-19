@@ -1,4 +1,4 @@
-module ExamsHelper
+module TestPapersHelper
     def getAllQuestionID(_test_session_id)
         tsid = _test_session_id.to_i
         ts = TestSession.find(tsid)

@@ -1,5 +1,6 @@
 class SearchController < ApplicationController
     def index
+        @title = "Search"
         pars = params[:home]
         key = pars[:key]
         @test_session_results = TestSession.ransack(content_cont: key).result

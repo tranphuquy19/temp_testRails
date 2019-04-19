@@ -7,7 +7,7 @@ ruby '2.6.1'
 gem 'rails', '~> 5.2.3'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.3.6'
-gem 'clearance'
+gem 'clearance', '~> 1.16.2'
 gem 'faker', '~> 1.6', '>= 1.6.3'
 #search 
 gem "ransack"

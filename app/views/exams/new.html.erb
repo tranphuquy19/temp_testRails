@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="row">
+        <div class="col-md-12">
+            <h4>Create Exam</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form-horizontal form-bordered" id="edit_exam_form" method="post" accept-charset="UTF-8"
+                action="/exams/create">
+                <%= csrf %>
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="inputReadOnly">Title</label>
+                    <div class="col-md-6">
+                        <input type="text"class="form-control" name="exam[title]">
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="inputReadOnly">Category</label>
+                    <div class="col-md-6">
+                        <input type="text"class="form-control"
+                            name="exam[category]">
+                    </div>
+                </div>
+                
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="inputHelpText">List Questions</label>
+                    <div class="col-md-6">
+                        <textarea class="form-control" name="exam[list_questions]" form="edit_exam_form" cols="50"
+                            rows="10" placeholder="Ctrl+Shift+F để tìm câu hỏi"></textarea>
+                        <span class="help-block">Ctrl+Shift+F để tìm câu hỏi</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <p>
+                            <button class="btn btn-3d btn-secondary mr-xs mb-sm" name="exam[submit]" type="submit"
+                                value="save">Save</button>
+                        </p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

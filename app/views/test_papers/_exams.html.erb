@@ -1,6 +1,5 @@
 <%= form_for :exam, url: exams_path do |form| %>
 
-    <% @timeRemaining = getTimeRemaining(@test_session_id)%>
     <script>
         var upgradeTime = <%= @timeRemaining %> ;
         var seconds = upgradeTime;
@@ -50,7 +49,7 @@
     <% @list.each do |li|%> 
       <% $i+=1 %>
         <% if $i%2==0 %>
-            <section class="container bg-success">
+            <section class="container bg-success" data="<%= li%>">
                 <h4> 問題:<%= $i%> </h4>
                 <h4><%= markdown(Question.find(li).content) %></h4>
                     <% @temp=eval(Question.find(li).answers)%>
@@ -72,7 +71,7 @@
                 </div>
             </section>
         <% else %>
-            <section class="container bg-warning">
+            <section class="container bg-warning" data="<%= li%>">
                 <h4> 問題:<%= $i%> </h4>
                 <h4><%= markdown(Question.find(li).content) %></h4>
                     <% @temp=eval(Question.find(li).answers)%>
@@ -106,21 +105,15 @@
                             <button class="btn btn-primary btn-block" id="submit-btn" name="exams[submit]" type="submit">Nộp bài</button>
                         </div>
     </form>
-    <%= params[:exam_id] %>
 
     <% @listCorrectAnwsers = getCorrectAnwsers(@test_session_id)%>
 
     <script>
-        var listCA = <%=raw @listCorrectAnwsers %>;
         var button = document.getElementById("submit-btn");
-        
-
-            button.onclick = function(){
+        button.onclick = function(){
                 var element = document.getElementsByClassName("custom-control-label");
                 var arrayAnswer = [];
                 var checkbox = document.getElementsByClassName("custom-control-input");
-                var correctOf = 0;
-                var point = 0;
                 for(var i=0;i<checkbox.length/4;i++){
                     for(var j=0;j<4;j++){
                         if(checkbox[i*4+j].checked==true){
@@ -132,17 +125,8 @@
                     }
                 }
 
-                for(var i=0;i<arrayAnswer.length;i++){
-                    if(arrayAnswer[i]==listCA[i]){
-                        correctOf++;
-                    }
-                }
-                point = correctOf/arrayAnswer.length;
-                alert("Bạn trả lời đúng "+correctOf+"/"+arrayAnswer.length+" câu!");
+                alert("Kết thúc!");
                 clearInterval(countdownTimer);
-                window.open("localhost:3000//controller/create?answers="+arrayAnswer.split(",")+"&point="+point,"_self");
-              
-            };
         </script>
 
 <% end %>
