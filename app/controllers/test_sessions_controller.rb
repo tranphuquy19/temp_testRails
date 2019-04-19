@@ -84,7 +84,7 @@ class TestSessionsController < ApplicationController
         @test_session = TestSession.find(pars[:submit])
         if allow_examinations
             TestPaper.create(exam_id: pars[:submit].to_i, test_session_id: @test_session.id, category_id: @test_session.category.id, user_id: current_user.id)
-            redirect_to exams_show_path
+            redirect_to exams_path
         else
             redirect_to home_path
         end
