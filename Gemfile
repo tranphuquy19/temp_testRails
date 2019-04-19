@@ -7,9 +7,15 @@ ruby '2.6.1'
 gem 'rails', '~> 5.2.3'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.3.6'
-gem 'clearance'
+gem 'clearance', '~> 1.16.2'
 gem 'faker', '~> 1.6', '>= 1.6.3'
+#search 
+gem "ransack"
 gem 'unirest'
+#countdown timer
+gem "jquery-countdown-rails"
+#markdown redcarpet
+gem 'redcarpet', '~>3.0.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets

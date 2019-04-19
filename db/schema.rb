@@ -10,15 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_05_135953) do
-
-  create_table "answers", force: :cascade do |t|
-    t.text "content"
-    t.integer "questions_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["questions_id"], name: "index_answers_on_questions_id"
-  end
+ActiveRecord::Schema.define(version: 2019_04_16_130041) do
 
   create_table "categories", force: :cascade do |t|
     t.string "title", null: false
@@ -26,6 +18,7 @@ ActiveRecord::Schema.define(version: 2019_04_05_135953) do
     t.text "img"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["title"], name: "index_categories_on_title", unique: true
   end
 
   create_table "class_members", force: :cascade do |t|
@@ -71,7 +64,6 @@ ActiveRecord::Schema.define(version: 2019_04_05_135953) do
 
   create_table "exams", force: :cascade do |t|
     t.string "title"
-    t.integer "time_remaining"
     t.text "list_questions"
     t.integer "category_id"
     t.integer "user_id"
@@ -79,6 +71,7 @@ ActiveRecord::Schema.define(version: 2019_04_05_135953) do
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_exams_on_category_id"
     t.index ["user_id"], name: "index_exams_on_user_id"
+    t.index [nil], name: "index_exams_on_test_session"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -96,6 +89,8 @@ ActiveRecord::Schema.define(version: 2019_04_05_135953) do
   create_table "questions", force: :cascade do |t|
     t.integer "level", null: false
     t.text "content", null: false
+    t.text "answers", null: false
+    t.string "key", null: false
     t.integer "category_id"
     t.integer "user_id"
     t.datetime "created_at", null: false
@@ -123,23 +118,41 @@ ActiveRecord::Schema.define(version: 2019_04_05_135953) do
     t.index ["user_id"], name: "index_session_members_on_user_id"
   end
 
+  create_table "test_exams", force: :cascade do |t|
+    t.integer "test_session_id"
+    t.integer "exam_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exam_id"], name: "index_test_exams_on_exam_id"
+    t.index ["test_session_id"], name: "index_test_exams_on_test_session_id"
+    t.index [nil], name: "index_test_exams_on_exam"
+    t.index [nil], name: "index_test_exams_on_test_session"
+  end
+
   create_table "test_papers", force: :cascade do |t|
     t.text "content"
     t.integer "point"
     t.integer "exam_id"
     t.integer "category_id"
     t.integer "user_id"
+    t.integer "test_session_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_test_papers_on_category_id"
     t.index ["exam_id"], name: "index_test_papers_on_exam_id"
+    t.index ["test_session_id"], name: "index_test_papers_on_test_session_id"
     t.index ["user_id"], name: "index_test_papers_on_user_id"
+    t.index [nil], name: "index_test_papers_on_exam"
+    t.index [nil], name: "index_test_papers_on_test_session"
+    t.index [nil], name: "index_test_papers_on_user"
   end
 
   create_table "test_sessions", force: :cascade do |t|
     t.text "content"
     t.text "list_exams"
+    t.string "img", default: "projects/project.jpg"
     t.datetime "time_public"
+    t.integer "time_remaining"
     t.integer "category_id"
     t.integer "user_id"
     t.datetime "created_at", null: false
