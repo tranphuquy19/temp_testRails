@@ -33,9 +33,4 @@ module ExamsHelper
         end
         return list_anwsers 
     end
-
-
-
-    
-
 end
