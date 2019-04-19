@@ -21,6 +21,7 @@ class PostsController < ApplicationController
     def show
         @post = Post.find(params[:id])
         @title = @post.user.name + " post"
+        @url = "unil"
     end
 
     def update
