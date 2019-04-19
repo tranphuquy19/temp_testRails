@@ -2,13 +2,14 @@ class ExamsController < ApplicationController
     include ApplicationHelper
     def show
 
-
-        if allow_examinations
-            @test_session_id = TestPaper.last.test_session_id
-        else
-            redirect_to home_path
+        @title = Exam
+        @test_session_id = TestPaper.last.test_session_id
+        # if allow_examinations
+        #     @test_session_id = TestPaper.last.test_session_id
+        # else
+        #     redirect_to home_path
             
-        end
+        # end
     end
 
     def create
@@ -16,8 +17,6 @@ class ExamsController < ApplicationController
        _point = params[:point]
        TestPaper.last.update(content:_answers, point:_point )
        redirect_to home_path
-
-
     end
     
 end

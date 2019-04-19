@@ -16,8 +16,6 @@ module ApplicationHelper
             return markdown.render(text).html_safe
     end
 
-    def isPostOwner(user_id, post_id)
-        if user_id != user_id
 
     def isPostOwner(post_id)
         if signed_in?
