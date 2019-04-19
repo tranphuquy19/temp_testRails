@@ -119,7 +119,7 @@
                 var arrayAnswer = [];
                 var checkbox = document.getElementsByClassName("custom-control-input");
                 var correctOf = 0;
-                var point = 0;
+                var _point = 0;
                 for(var i=0;i<checkbox.length/4;i++){
                     for(var j=0;j<4;j++){
                         if(checkbox[i*4+j].checked==true){
@@ -136,10 +136,21 @@
                         correctOf++;
                     }
                 }
-                point = correctOf/arrayAnswer.length;
+                _point = correctOf/arrayAnswer.length;
+
                 alert("Bạn trả lời đúng "+correctOf+"/"+arrayAnswer.length+" câu!");
                 clearInterval(countdownTimer);
-                window.open("localhost:3000//controller/create?answers="+arrayAnswer.split(",")+"&point="+point,"_self");
+
+                $.ajax({
+                    type:"POST",
+                    url:"/ExamsController/final_exam",
+                    dataType:"json",
+                    data: {
+                                point: _point,
+                                answer: arrayAnswer,
+                                }
+                });
+                
               
             };
         </script>

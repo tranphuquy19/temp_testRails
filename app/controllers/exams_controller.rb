@@ -26,10 +26,15 @@ class ExamsController < ApplicationController
     end
 
     def create
-       _answers = params[:answers]
-       _point = params[:point]
-       TestPaper.last.update(content:_answers, point:_point )
        redirect_to home_path
     end
+
+    def final_exam
+        point = params[:point]
+        answers = params[:answers]
+        tp = TestPaper.where(user_id = current_user.id,test_session_id:@test_session_id)
+        tp.update(content:answers, point:point)
+    end
+
     
 end
