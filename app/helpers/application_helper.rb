@@ -2,7 +2,6 @@ require 'redcarpet'
 include Clearance::Controller
 module ApplicationHelper
     include Clearance::Controller
-
     #Convert markdown to HTML
     def markdown(text)
         markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML,
@@ -19,9 +18,16 @@ module ApplicationHelper
 
     def isPostOwner(user_id, post_id)
         if user_id != user_id
-            return false
+
+    def isPostOwner(post_id)
+        if signed_in?
+            if current_user.id != post_id
+                return false
+            else
+                return true
+            end
         else
-            return true
+            return false
         end
     end
     def allow_examinations

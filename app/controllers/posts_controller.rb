@@ -19,21 +19,33 @@ class PostsController < ApplicationController
     end
 
     def show
-        @post = Post.find_by_id(params[:id])
+        @post = Post.find(params[:id])
         @title = @post.user.name + " post"
-        @url = "http://localhost:3000/posts/"+params[:id]+"/md"
+        @url = "unil"
     end
 
     def update
+        if signed_in?
+            pars = params[:posts]
+            post_content = pars[:content].sub! "\r\n", "\n"
+            #post_tags = pars[:tags].gsub! " ", ""
+            post_tags = pars[:tags].split(",").map{|tag| tag.strip}.join(",")
+            if current_user.posts.create(title: pars[:title], content: pars[:content], tags: post_tags, category_id: 1)
+                redirect_to posts_path
+            else
+                redirect_to home_path
+            end
+        else
+            redirect_to home_path
+        end
     end
 
     def edit
-        id = params[:id]
+        id = params[:id].to_i
+        @post = Post.find(id)
         if signed_in?
             if isPostOwner(id)
-                @post = Post.find(id)
-            else
-                redirect_to home_path
+                render "edit"
             end
         else
             redirect_to home_path

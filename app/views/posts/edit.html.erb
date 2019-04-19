@@ -8,7 +8,7 @@
             <h2 class="panel-title"><b>Edit Post</b></h2>
         </header>
         <div class="panel-body">
-            <form id="create_post_form" class="form-horizontal form-bordered" method="post" action="/posts/edit">
+            <form id="create_post_form" class="form-horizontal form-bordered" method="post" action="/posts/update">
                 <%= csrf %>
                 <%= optionsForm("posts[id]", @post.id.to_s) %>
                 <div class="form-group">
@@ -21,7 +21,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-9">
-                        <textarea id="create_post_textarea" class="form-control" form="create_post_form" name="posts[content]" placeholder="Nhập nội dung bài viết, hỗ trợ Markdown Language. Ctrl+Shift+H để tìm hiểu về kí pháp Markdown" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 80px;" value="<%= @post.content%>"></textarea>
+                        <textarea id="create_post_textarea" class="form-control" form="create_post_form" name="posts[content]" placeholder="Nhập nội dung bài viết, hỗ trợ Markdown Language. Ctrl+Shift+H để tìm hiểu về kí pháp Markdown" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 80px;"><%= @post.content%></textarea>
                     </div>
                 </div>
                 <div class="form-group">
