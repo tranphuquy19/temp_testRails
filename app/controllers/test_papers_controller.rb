@@ -3,12 +3,17 @@ class TestPapersController < ApplicationController
     skip_before_action :verify_authenticity_token
     def show
         @title = Exam 
-        @test_session_id = TestPaper.last.test_session_id
+        @test_session_id = TestPaper.where(user_id: current_user.id).last.test_session_id
+
         @timeRemaining = 0
         if allow_examinations
-            public_time = TestSession.find(@test_session_id).time_public.utc
-            current_time = Time.now.utc
-            @timeRemaining = (current_time-public_time).to_i
+            if TestPaper.where(user_id: current_user.id, test_session_id: @test_session_id).last.point != nil 
+                redirect_to  '/users/home'
+            else
+                public_time = TestSession.find(@test_session_id).time_public.utc
+                current_time = Time.now.utc
+                @timeRemaining = (current_time-public_time).to_i
+            end
         else
             redirect_to home_path
         end
@@ -32,6 +37,32 @@ class TestPapersController < ApplicationController
 
     def final
         arrayAnswer = params[:answers]
-        
+        tsid = TestPaper.last.test_session_id
+        p tsid
+        p arrayAnswer
+        p "----------------------------------------------------"
+        ts = TestSession.find(tsid)
+        _exam_ids = ts.exams.ids 
+        list_questionID = []
+        _exam_ids.each do |id|
+            list_temp = Exam.find(id).list_questions.split(",")
+            list_questionID.concat list_temp
+        end
+
+        list_anwsers = []
+        list_questionID.each do |li|
+            temp = li.to_i
+            list_anwsers.push(Question.find(temp).key)
+        end
+        numCorrect = 0
+        i = 0 
+        while i < arrayAnswer.length
+            if arrayAnswer[i]== list_anwsers[i]
+                numCorrect+=1
+            end
+            i+=1
+        end
+        tp = TestPaper.where(user_id:current_user.id,test_session_id:tsid)
+        tp.update(content:arrayAnswer,point:numCorrect)
     end
 end

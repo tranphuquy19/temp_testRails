@@ -85,7 +85,7 @@ class TestSessionsController < ApplicationController
         if allow_examinations
             if(TestPaper.where(test_session_id: @test_session.id, user_id: current_user.id).empty? == false)
                 tp = TestPaper.where(test_session_id: @test_session.id, user_id: current_user.id)
-                tp.update(content:"",point:88)
+                tp.update(content:"",point: nil)
             else
                 TestPaper.create(exam_id: pars[:submit].to_i, test_session_id: @test_session.id, category_id: @test_session.category.id, user_id: current_user.id)
             end

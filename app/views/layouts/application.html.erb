@@ -385,6 +385,27 @@
       var t = $('table').addClass('table')
     });
   </script>
+  <script>
+        $("#submit-btn").click(function(){
+                var element = $(".custom-control-label");
+                var arrayAnswer = [];
+                var checkbox = $(".custom-control-input");
+                for(var i=0;i<checkbox.length/4;i++){
+                    for(var j=0;j<4;j++){
+                        if(checkbox[i*4+j].checked==true){
+                            arrayAnswer[i]=element[i*4+j].id;
+                        }
+                    }
+                    if(arrayAnswer[i]==null){
+                        arrayAnswer[i]="x";
+                    }
+                }
+                $.post('/test_papers/final',
+                        {answers: arrayAnswer},
+                    );
+                
+        });
+    </script>
 </body>
 
 </html>
