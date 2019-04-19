@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get '/edit', to: 'test_sessions#edit'
 
   get '/test_papers/', to: 'test_papers#show',:as => :test_papers_page
-  post '/test_papers/', to: 'test_papers#toHome'
+  post '/test_papers/', to: 'users#home'
   post '/test_papers/final', to: 'test_papers#final'
 
   post '/test_sessions/update', to: 'test_sessions#update'
