@@ -1,26 +1,19 @@
 <div class="row">
     <div class="row">
         <div class="col-md-12">
-            <h4>Exams</h4>
+            <h4>Create Exam</h4>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
             <form class="form-horizontal form-bordered" id="edit_exam_form" method="post" accept-charset="UTF-8"
-                action="/exams/update">
+                action="/exams/create">
                 <%= csrf %>
-                <div class="form-group">
-                    <label class="col-md-3 control-label" for="inputReadOnly">ID</label>
-                    <div class="col-md-6">
-                        <input type="text" value="<%= @exam.id %>" class="form-control" readonly="readonly"
-                            name="exam[id]">
-                    </div>
-                </div>
 
                 <div class="form-group">
                     <label class="col-md-3 control-label" for="inputReadOnly">Title</label>
                     <div class="col-md-6">
-                        <input type="text" value="<%= @exam.title %>" class="form-control" name="exam[title]">
+                        <input type="text"class="form-control" name="exam[title]">
                     </div>
                 </div>
 
@@ -28,21 +21,17 @@
                 <div class="form-group">
                     <label class="col-md-3 control-label" for="inputReadOnly">Category</label>
                     <div class="col-md-6">
-                        <input type="text" value="<%= @exam.category.title %>" class="form-control"
+                        <input type="text"class="form-control"
                             name="exam[category]">
                     </div>
                 </div>
-                <% txt = "" 
-                temp = @exam.list_questions.split(",")
-                temp.each do |question_id|
-                    txt += question_id + "\r\n"
-                end %>
+                
 
                 <div class="form-group">
                     <label class="col-md-3 control-label" for="inputHelpText">List Questions</label>
                     <div class="col-md-6">
                         <textarea class="form-control" name="exam[list_questions]" form="edit_exam_form" cols="50"
-                            rows="10" placeholder="Ctrl+Shift+F để tìm câu hỏi"><%= txt %></textarea>
+                            rows="10" placeholder="Ctrl+Shift+F để tìm câu hỏi"></textarea>
                         <span class="help-block">Ctrl+Shift+F để tìm câu hỏi</span>
                     </div>
                 </div>
