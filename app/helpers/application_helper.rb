@@ -16,6 +16,15 @@ module ApplicationHelper
            )
             return markdown.render(text).html_safe
     end
+
+    def isPostOwner(user_id, post_id)
+        if user_id != user_id
+            return false
+        else
+            return true
+        end
+    end
+    
     def allow_examinations
         if isSessionMember
             public_time = @test_session.time_public.utc
