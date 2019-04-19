@@ -17,6 +17,7 @@ module ApplicationHelper
             return markdown.render(text).html_safe
     end
 
+
     def isPostOwner(post_id)
         if signed_in?
             if current_user.id != post_id
@@ -84,6 +85,12 @@ module ApplicationHelper
         else 
             redirect_to sign_in_path
             return false
+        end
+    end
+
+    def require_signed
+        if signed_in? == false
+            redirect_to sign_in_path
         end
 
     end

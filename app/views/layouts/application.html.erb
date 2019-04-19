@@ -7,7 +7,7 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-  <title>Test online | <%= @title %></title>
+  <title><%= @title %> | Test online</title>
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="/img/icon_title.png" type="image/x-icon" />
@@ -40,10 +40,12 @@
   <link rel="stylesheet" href="/vendor/rs-plugin/css/layers.css" />
   <link rel="stylesheet" href="/vendor/rs-plugin/css/navigation.css" />
   <link rel="stylesheet" href="/vendor/circle-flip-slideshow/css/component.css" />
+  <link rel="stylesheet" href="/vendor/nivo-slider/nivo-slider.css">
+	<link rel="stylesheet" href="/vendor/nivo-slider/default/default.css">
 
 
   <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css" />
+    href="/css/bootstrap-datetimepicker.css" />
   <!-- Skin CSS -->
   <link rel="stylesheet" href="/css/skins/default.css" />
 
@@ -78,7 +80,8 @@
                     <%= csrf %>
                     <%= optionsForm("home", "search")%>
                     <div class="input-group">
-                      <input type="text" class="form-control" name="home[key]" id="q" placeholder="Search..." required />
+                      <input type="text" class="form-control" name="home[key]" id="q" placeholder="Search..."
+                        required />
                       <span class="input-group-btn">
                         <button class="btn btn-default" type="submit">
                           <i class="fa fa-search"></i>
@@ -136,7 +139,7 @@
                               <a href="/posts/new">New Post</a>
                             </li>
                             <li>
-                              <a href="/users/posts">My Posts</a>
+                              <a href="/users/home#recent">My Posts</a>
                             </li>
                           </ul>
                         </li>
@@ -152,10 +155,10 @@
                         </li>
                         <% if isAdmin%>
                         <li class="dropdown">
-                          <a class="dropdown-toogle" href="/test_exams">Test Exams</a>
+                          <a class="dropdown-toogle" href="/exams">Test Exams</a>
                           <ul class="dropdown-menu">
                             <li>
-                              <a href="/tests_exams/new">New Exams</a>
+                              <a href="/exams/new">New Exams</a>
                             </li>
                           </ul>
                         </li>
@@ -288,7 +291,7 @@
           <div class="col-md-1">
             <a href="index.html" class="logo">
               <img alt="Porto" width="70" height="70" data-sticky-width="52" data-sticky-height="52"
-                    data-sticky-top="33" src="/img/icon_title.png" />
+                data-sticky-top="33" src="/img/icon_title.png" />
             </a>
           </div>
           <div class="col-md-7">
@@ -332,11 +335,11 @@
   <script src="/vendor/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
   <script src="/vendor/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
   <script src="/vendor/circle-flip-slideshow/js/jquery.flipshow.min.js"></script>
+  <script src="/vendor/nivo-slider/jquery.nivo.slider.min.js"></script>
   <script src="/js/views/view.home.js"></script>
   <script src="/js/moment.js"></script>
   <script src="/js/key.js"></script>
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+  <script src="/js/bootstrap-datetimepicker.min.js"></script>
 
   <!-- Theme Custom -->
   <script src="/js/custom.js"></script>
@@ -346,43 +349,65 @@
   <script src="/js/autosize.min.js"></script>
   <script src="/js/showdown.min.js"></script>
   <script src="/js/showdown-youtube.min.js"></script>
+  <script src="/vendor/circle-flip-slideshow/js/jquery.flipshow.min.js"></script>
   <%if @url != nil %>
-  
+
   <%# <script src="/js/showdown-github.min.js"></script> %>
   <script>
     var pageURL = $(location).attr("href");
-    $.get(pageURL+'/md', function (data) {
+    $.get(pageURL + '/md', function (data) {
       var content = data;
       //var converter = new showdown.Converter();
-      var converter = new showdown.Converter({extensions: ['youtube'], tables: true});
+      var converter = new showdown.Converter({ extensions: ['youtube'], tables: true });
 
       var md_html = converter.makeHtml(content);
       $('#pContent').append(md_html);
       var t = $('table').addClass('table')
     });
-    
+
   </script>
   <% end %>
   <script type="text/javascript">
     $(function () {
       $('#datetimepicker4').datetimepicker();
     });
-    $(document).key('ctrl+shift+f', function() {
+    $(document).key('ctrl+shift+f', function () {
       $('#formModal').modal();
     });
-    $(document).key('ctrl+shift+h', function(){
+    $(document).key('ctrl+shift+h', function () {
       var origin_link = $(location).attr('host');
-      window.open('http://'+origin_link+'/posts/howtomarkdown');
+      window.open('http://' + origin_link + '/posts/howtomarkdown');
       //window.open('https://www.google.com');
     });
     autosize(document.getElementById('create_post_textarea'));
     $.get('/posts/markdown', function (data) {
       var content = data;
       //var converter = new showdown.Converter();
-      var converter = new showdown.Converter({extensions: ['youtube'], tables: true});
+      var converter = new showdown.Converter({ extensions: ['youtube'], tables: true });
       var md_help = converter.makeHtml(content);
       $('#helpmarkdown').append(md_help);
       var t = $('table').addClass('table')
+    });
+    key_id = "";
+    $("#btnAdd").click(function(){
+      current_value = $.trim($("#list_questions").val());
+      $("#list_questions").val($.trim(current_value+"\r\n"+key_id));
+    });
+    $("#changebox").on("input", function(){
+      data = $("#changebox").val();
+      //console.log(data);
+      $.post( "/jquery", { key: data }, function(result){
+        $("#qtResult").val("");
+        temp = "";
+        cont = "";
+        result.forEach(function(item){
+          console.log(item.content)
+            temp += item.id + "\r\n";
+            cont += item.content +" ["+item.id+"]"+ "\r\n";
+        });
+        $("#qtResult").val(cont);
+        key_id = $.trim(temp);
+      });
     });
   </script>
   <script>

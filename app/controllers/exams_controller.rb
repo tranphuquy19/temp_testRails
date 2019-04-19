@@ -1,38 +1,41 @@
 class ExamsController < ApplicationController
     include Clearance::Controller
-    skip_before_action :verify_authenticity_token
+    include ApplicationHelper
+
+    before_action :ifNotAdmin
+
+    def index
+        @title = "Exams"
+        @exams = Exam.last(30).reverse
+    end
+
+    def new
+    end
+
     def show
-        @title = Exam 
-        @test_session_id = TestPaper.last.test_session_id
-        @timeRemaining = 0
-        if allow_examinations
-            public_time = TestSession.find(@test_session_id).time_public.utc
-            current_time = Time.now.utc
-            @timeRemaining = (current_time-public_time).to_i
-        else
+    end
+
+    def create   
+        pars = params[:exam]
+        list_questions = pars[:list_questions].split("\r\n").map{|tag| tag.strip}.join(",")
+        Exam.create(title: pars[:title], list_questions: list_questions, category_id: Category.find_by(title: pars[:category]))
+    end
+    
+    def update
+        pars = params[:exam]
+        list_questions = pars[:list_questions].split("\r\n").map{|tag| tag.strip}.join(",")
+        Exam.find(pars[:id].to_i).update_attributes(title: pars[:title], category_id: Category.find_by(title: pars[:category]).id, list_questions: list_questions)
+    end
+    
+
+    def edit
+        @title = "Edit exam"
+        @exam = Exam.find(params[:id])
+    end
+
+    def ifNotAdmin
+        if checkAuth == false
             redirect_to home_path
         end
     end
-
-    def allow_examinations
-        if signed_in?
-            if SessionMember.where(user_id: current_user.id, test_session_id: @test_session_id).exists?
-                return true
-            else
-                return false
-            end
-        else
-            return false
-        end
-    end
-
-    def create
-       redirect_to home_path
-    end
-
-    def final
-        arrayAnswer = params[:answers]
-        
-    end
-    
 end

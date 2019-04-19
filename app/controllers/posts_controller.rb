@@ -20,7 +20,7 @@ class PostsController < ApplicationController
 
     def show
         @post = Post.find(params[:id])
-        @title = @post.user.name + " post"
+        @title = @post.user.name + "View post"
         @url = "unil"
     end
 
@@ -54,7 +54,7 @@ class PostsController < ApplicationController
 
     def new
         if signed_in?
-            @title = "create new post"
+            @title = "Create new post"
             render "new"
         else
             redirect_to home_path
