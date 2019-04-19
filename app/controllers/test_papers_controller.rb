@@ -7,8 +7,11 @@ class TestPapersController < ApplicationController
 
 
     def show
-        @title = Exam 
-        @test_session_id = TestPaper.where(user_id: current_user.id).last.test_session_id
+        @title = Exam
+        begin 
+            @test_session_id = TestPaper.where(user_id: current_user.id).last.test_session_id
+        rescue
+        end
 
         @timeRemaining = 0
         if allow_examinations
