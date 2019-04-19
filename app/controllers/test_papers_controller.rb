@@ -1,6 +1,11 @@
 class TestPapersController < ApplicationController
     include Clearance::Controller
     skip_before_action :verify_authenticity_token
+    def toHome
+        redirect_to home_path
+    end
+
+
     def show
         @title = Exam 
         @test_session_id = TestPaper.where(user_id: current_user.id).last.test_session_id
@@ -38,9 +43,6 @@ class TestPapersController < ApplicationController
     def final
         arrayAnswer = params[:answers]
         tsid = TestPaper.last.test_session_id
-        p tsid
-        p arrayAnswer
-        p "----------------------------------------------------"
         ts = TestSession.find(tsid)
         _exam_ids = ts.exams.ids 
         list_questionID = []
@@ -64,5 +66,7 @@ class TestPapersController < ApplicationController
         end
         tp = TestPaper.where(user_id:current_user.id,test_session_id:tsid)
         tp.update(content:arrayAnswer,point:numCorrect)
+
+        redirect_to  home_path
     end
 end
