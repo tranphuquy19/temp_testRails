@@ -36,10 +36,10 @@
             <div class="tabs">
                 <ul class="nav nav-tabs">
                     <li class="active">
-                        <a href="#popular" data-toggle="tab"><i class="fa fa-star"></i> Your Profiles</a>
+                        <a href="#popular" data-toggle="tab"><i class="fa fa-star"></i> Profile của bạn</a>
                     </li>
                     <li>
-                        <a href="#recent" data-toggle="tab">Test Session | Posts</a>
+                        <a href="#recent" data-toggle="tab">Phiên thi | Bài viết</a>
                     </li>
                 </ul>
                 <div class="tab-content">
@@ -73,7 +73,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="inputHelpText">Update Password</label>
+                                <label class="col-md-3 control-label" for="inputHelpText">Cập nhật mật khẩu</label>
                                 <div class="col-md-6">
                                     <input name="user[password]" type="password" class="form-control" placeholder="***********">
                                     <span class="help-block">Password chứa ít nhất 6 kí tự!</span>
@@ -81,7 +81,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-3 control-label">File Upload</label>
+                                <label class="col-md-3 control-label">Upload file</label>
                                 <div class="col-md-6">
                                     <div class="fileupload fileupload-new" data-provides="fileupload">
                                         <div class="input-append">
@@ -92,7 +92,7 @@
                                                 <input type="file" name="session[file_upload]" />
                                             </span>
                                             <a href="#" class="btn btn-default fileupload-exists"
-                                                data-dismiss="fileupload">Remove</a>
+                                                data-dismiss="fileupload">Xóa</a>
                                         </div>
                                     </div>
                                 </div>
@@ -104,7 +104,7 @@
                                 <div class="col-md-6">
                                     <p>
                                         <button class="btn btn-3d btn-secondary mr-xs mb-sm" name="user[submit]"
-                                            type="submit" value="save">Save</button>
+                                            type="submit" value="save">Lưu</button>
                                     </p>
                                 </div>
                             </div>
@@ -118,7 +118,7 @@
                                         <li class="active">
                                             <a href="#testSessionSearch" data-toggle="tab">
                                                 <span>
-                                                    <i class="fa fa-star"></i> Test Sessions <span
+                                                    <i class="fa fa-star"></i> Phiên thi <span
                                                         class="label label-default"><%= @test_session_results.count%></span>
                                                 </span>
                                             </a>
@@ -126,7 +126,7 @@
                                         <li>
                                             <a href="#postSearch" data-toggle="tab">
                                                 <span>
-                                                    Post <span
+                                                    Bài viết <span
                                                         class="label label-default"><%= @post_results.count%></span>
                                                 </span>
                                             </a>
@@ -164,7 +164,7 @@
                                                         <div class="post-meta">
                                                             <span><i
                                                                     class="fa fa-calendar"></i><%= test_session.created_at.strftime("%b %d, %Y") %></span>
-                                                            <span><i class="fa fa-user"></i> By
+                                                            <span><i class="fa fa-user"></i> Bởi
                                                                 <a href="/users/<%= test_session.user.id %>">
                                                                     <% if test_session.user.name.blank? %>
                                                                     <%= test_session.user.email %>
@@ -216,7 +216,7 @@
                                                             </span>
                                                             <span>
                                                                 <i class="fa fa-comments"></i>
-                                                                <a href="#"><%= post.comments.count %> Comments</a>
+                                                                <a href="#"><%= post.comments.count %> Bình luận</a>
                                                             </span>
 
                                                             <hr class="solid">

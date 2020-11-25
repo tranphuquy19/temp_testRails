@@ -12,7 +12,7 @@
                 <li class="active">
                     <a href="#testSessionSearch" data-toggle="tab">
                         <span>
-                            <i class="fa fa-star"></i> Test Sessions <span
+                            <i class="fa fa-star"></i> Phiên thi <span
                                 class="label label-default"><%= @test_session_results.count%></span>
                         </span>
                     </a>
@@ -20,14 +20,14 @@
                 <li>
                     <a href="#postSearch" data-toggle="tab">
                         <span>
-                            Post <span class="label label-default"><%= @post_results.count%></span>
+                            Bài viết <span class="label label-default"><%= @post_results.count%></span>
                         </span>
                     </a>
                 </li>
                 <li>
                     <a href="#userSearch" data-toggle="tab">
                         <span>
-                            User <span class="label label-default"><%= @user_results.count%></span>
+                            Người dùng <span class="label label-default"><%= @user_results.count%></span>
                         </span>
                     </a>
                 </li>
@@ -49,7 +49,7 @@
                                 <div class="post-meta">
                                     <span><i
                                             class="fa fa-calendar"></i><%= test_session.created_at.strftime("%b %d, %Y") %></span>
-                                    <span><i class="fa fa-user"></i> By
+                                    <span><i class="fa fa-user"></i> Bởi
                                         <a href="/users/<%= test_session.user.id %>">
                                             <% if test_session.user.name.blank? %>
                                             <%= test_session.user.email %>
@@ -82,7 +82,7 @@
                                 <div class="post-meta">
                                     <span><i
                                             class="fa fa-calendar"></i><%= post.created_at.strftime("%b %d, %Y") %></span>
-                                    <span><i class="fa fa-user"></i> By
+                                    <span><i class="fa fa-user"></i> Bởi
                                         <a href="/users/<%= post.user.id %>">
                                             <% if post.user.name.blank? %>
                                             <%= post.user.email %>

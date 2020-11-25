@@ -6,8 +6,8 @@
                     <% @exams.each do |exam|%>
                     <div class="col-xs-12 col-md-6 col-lg-6 sample-icon">
                         <a href="/exams/<%= exam.id%>/edit"><i class="icon-user icons"></i><span
-                                class="name"><b>Title:<%= exam.title %> |
-                                    Category:<%= exam.category.title%> <i class="fa fa-edit"></i></b></span></a>
+                                class="name"><b>Tiêu đề:<%= exam.title %> |
+                                    Thể loại:<%= exam.category.title%> <i class="fa fa-edit"></i></b></span></a>
                     </div>
                     <% end %>
                 </div>
