@@ -18,7 +18,7 @@ class ExamsController < ApplicationController
     def create   
         pars = params[:exam]
         list_questions = pars[:list_questions].split("\r\n").map{|tag| tag.strip}.join(",")
-        Exam.create(title: pars[:title], list_questions: list_questions, category_id: Category.find_by(title: pars[:category]))
+        current_user.exams.create(title: pars[:title], list_questions: list_questions, category_id: Category.find_by(title: pars[:category]).id, list_questions: list_questions)
     end
     
     def update

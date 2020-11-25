@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get '/posts/:id/edit', to: 'posts#edit'
   post '/search/:id', to: 'search#index', :as => :search_page
   get '/users/home', to: 'users#home'
+  post '/exams/create', to: 'exams#create'
   post '/users/update', to: 'users#update'
   post '/exams/update', to: 'exams#update'
   post '/jquery', to: 'search_jquery#getQuestion'

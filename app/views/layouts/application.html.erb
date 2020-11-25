@@ -41,11 +41,10 @@
   <link rel="stylesheet" href="/vendor/rs-plugin/css/navigation.css" />
   <link rel="stylesheet" href="/vendor/circle-flip-slideshow/css/component.css" />
   <link rel="stylesheet" href="/vendor/nivo-slider/nivo-slider.css">
-	<link rel="stylesheet" href="/vendor/nivo-slider/default/default.css">
+  <link rel="stylesheet" href="/vendor/nivo-slider/default/default.css">
 
 
-  <link rel="stylesheet"
-    href="/css/bootstrap-datetimepicker.css" />
+  <link rel="stylesheet" href="/css/bootstrap-datetimepicker.css" />
   <!-- Skin CSS -->
   <link rel="stylesheet" href="/css/skins/default.css" />
 
@@ -389,21 +388,21 @@
       var t = $('table').addClass('table')
     });
     key_id = "";
-    $("#btnAdd").click(function(){
+    $("#btnAdd").click(function () {
       current_value = $.trim($("#list_questions").val());
-      $("#list_questions").val($.trim(current_value+"\r\n"+key_id));
+      $("#list_questions").val($.trim(current_value + "\r\n" + key_id));
     });
-    $("#changebox").on("input", function(){
+    $("#changebox").on("input", function () {
       data = $("#changebox").val();
       //console.log(data);
-      $.post( "/jquery", { key: data }, function(result){
+      $.post("/jquery", { key: data }, function (result) {
         $("#qtResult").val("");
         temp = "";
         cont = "";
-        result.forEach(function(item){
+        result.forEach(function (item) {
           console.log(item.content)
-            temp += item.id + "\r\n";
-            cont += item.content +" ["+item.id+"]"+ "\r\n";
+          temp += item.id + "\r\n";
+          cont += item.content + " [" + item.id + "]" + "\r\n";
         });
         $("#qtResult").val(cont);
         key_id = $.trim(temp);
@@ -411,26 +410,26 @@
     });
   </script>
   <script>
-        $("#submit-btn").click(function(){
-                var element = $(".custom-control-label");
-                var arrayAnswer = [];
-                var checkbox = $(".custom-control-input");
-                for(var i=0;i<checkbox.length/4;i++){
-                    for(var j=0;j<4;j++){
-                        if(checkbox[i*4+j].checked==true){
-                            arrayAnswer[i]=element[i*4+j].id;
-                        }
-                    }
-                    if(arrayAnswer[i]==null){
-                        arrayAnswer[i]="x";
-                    }
-                }
-                $.post('/test_papers/final',
-                        {answers: arrayAnswer},
-                    );
-                
-        });
-    </script>
+    $("#submit-btn").click(function () {
+      var element = $(".custom-control-label");
+      var arrayAnswer = [];
+      var checkbox = $(".custom-control-input");
+      for (var i = 0; i < checkbox.length / 4; i++) {
+        for (var j = 0; j < 4; j++) {
+          if (checkbox[i * 4 + j].checked == true) {
+            arrayAnswer[i] = element[i * 4 + j].id;
+          }
+        }
+        if (arrayAnswer[i] == null) {
+          arrayAnswer[i] = "x";
+        }
+      }
+      $.post('/test_papers/final',
+        { answers: arrayAnswer },
+      );
+
+    });
+  </script>
 </body>
 
 </html>
