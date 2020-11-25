@@ -3,17 +3,17 @@ en:
   clearance:
     models:
       clearance_mailer:
-        change_password: Change your password
+        change_password: Thay đổi mật khẩu
   clearance_mailer:
     change_password:
       closing: If you didn't request this, ignore this email. Your password has
         not been changed.
-      link_text: Change my password
+      link_text: Change my mật khẩu
       opening: "Someone, hopefully you, requested we send you a link to change
         your password:"
   flashes:
-    failure_after_create: Bad email or password.
-    failure_after_update: Password can't be blank.
+    failure_after_create: Bad email or mật khẩu.
+    failure_after_update: mật khẩu can't be blank.
     failure_when_forbidden: Please double check the URL or try submitting
       the form again.
     failure_when_not_signed_in: Please sign in to continue.
@@ -22,20 +22,20 @@ en:
       password:
         email: Email address
       password_reset:
-        password: Choose password
+        password: Choose mật khẩu
       session:
-        password: Password
+        password: Mật khẩu
       user:
-        password: Password
+        password: Mật khẩu
     submit:
       password:
-        submit: Reset password
+        submit: Khôi phục mật khẩu
       password_reset:
-        submit: Save this password
+        submit: Lưu mật khẩu
       session:
-        submit: Sign in
+        submit: Đăng nhập
       user:
-        create: Sign up
+        create: Đăng ký
   layouts:
     application:
       sign_in: Sign in
@@ -53,10 +53,10 @@ en:
       title: Reset your password
   sessions:
     form:
-      forgot_password: Forgot password?
-      sign_up: Sign up
+      forgot_password: Quên mật khẩu?
+      sign_up: Đăng ký
     new:
-      title: Sign in
+      title: Đăng nhập
   users:
     new:
       sign_in: Sign in
