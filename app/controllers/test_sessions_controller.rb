@@ -1,7 +1,7 @@
 class TestSessionsController < ApplicationController
     include ApplicationHelper
     def index
-        @title = "Test Sessions"
+        @title = "Các phiên thi"
         @test_sessions = TestSession.last(18).reverse
     end
 
@@ -22,7 +22,7 @@ class TestSessionsController < ApplicationController
 
     def new
         if isAdmin
-            @title = " Create new Test Session"
+            @title = " Tạo mới phiên thi"
         else
             redirect_to home_path
         end
@@ -56,6 +56,7 @@ class TestSessionsController < ApplicationController
                     end
                 end
             end
+            redirect_to "/test_sessions/" + pars[:id]
         end
     end
 
@@ -75,9 +76,8 @@ class TestSessionsController < ApplicationController
             lm.each do |email|
                 SessionMember.create(user_id: User.find_by(email: email).id, test_session_id: u.id)
             end
-        else
-            redirect_to home_path
         end
+        redirect_to home_path
     end
 
     def destroy

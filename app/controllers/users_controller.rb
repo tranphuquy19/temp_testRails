@@ -25,5 +25,6 @@ class UsersController < ApplicationController
         if pars[:password].blank? == false
             current_user.update_password(pars[:password])
         end
+        redirect_back(fallback_location: 'user/home')
     end
 end
