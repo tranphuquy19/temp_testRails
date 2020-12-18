@@ -59,12 +59,16 @@ class TestSessionsController < ApplicationController
         end
     end
 
+    def randomStr
+        (0...8).map { (65 + rand(26)).chr }.join
+      end
+
     def create
         if isAdmin
             pars = params[:session]
             le = pars[:list_exams].split("\r\n")
             lm = pars[:list_members].split("\r\n")
-            u = current_user.test_sessions.create(content: pars[:content], time_public: timePickerToDateTime(pars[:time_public]), time_remaining: pars[:time_remaining], category_id: pars[:category_id].to_i)
+            u = current_user.test_sessions.create(content: pars[:content], time_public: timePickerToDateTime(pars[:time_public]), time_remaining: pars[:time_remaining], category_id: pars[:category_id].to_i, img: 'https://robohash.org/' + randomStr())
             le.each do |title|
                 TestExam.create(test_session_id: u.id, exam_id: Exam.find_by(title: title).id)
             end
