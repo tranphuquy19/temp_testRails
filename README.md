@@ -3,7 +3,7 @@
 ## Demo here: https://youtu.be/InPNwIIf4TE
 
 
-## Installation guilde
+## Installation guide
 
 ```shell
 curl -L https://get.rvm.io | bash -s stable --ruby
@@ -19,3 +19,7 @@ rails seeder:all # seed the data <- run `rails -h` to get all commands
 rails test_online:setAdminByEmail[tranphuquy19@gmail.com] # choose the user wiith email tranphuquy19@gmail.com as the admin account
 rails server # start server
 ```
+
+## Shortcut
+
+`rails db:drop && rails db:migrate && rails seeder:all && rails test_online:setAdminByEmail[tranphuquy19@gmail.com] && rails server`
